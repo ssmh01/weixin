@@ -1,0 +1,76 @@
+<style>
+<!--
+#popup_mask {
+	background: none repeat scroll 0 0 #000000;
+	opacity: 0.6;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	display:none;
+}
+
+#popup_box{
+	z-index: 100000;
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #555555;
+    position: absolute;
+	clear: both;
+	display:none;
+	width:auto;
+}
+
+#popup_title {
+    background: none repeat scroll 0 0 #F1F1F1;
+    border-bottom: 1px solid #DDDDDD;
+    color: #0068B7;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 33px;
+    line-height: 33px;
+    text-indent: 12px;
+    width: 100%;
+}
+
+#popup_close {
+    background: url("/res/images/admin/close.gif") no-repeat scroll left top transparent;
+    display: block;
+    float: right;
+    height: 18px;
+    margin: 8px 5px 0;
+    overflow: hidden;
+    position: absolute;
+    right: 5px;
+    text-indent: -999px;
+    width: 18px;
+    z-index: 100000;
+}
+
+#popup_wait {
+    display: block;
+	margin: 9px 5px 0;
+    float: right;
+    position: absolute;
+    right: 30px;
+    z-index: 100000;
+}
+
+#popup_content {
+    background-color: #FFFFFF;
+	padding: 10px;
+	clear: both;
+}
+-->
+</style>
+
+<div id="popup_mask"></div>
+<div id="popup_box" >
+	<div id="popup_title">群组推荐</div>
+	<a id="popup_wait" title="请等待..."></a>
+	<a id="popup_close" title="关闭" href="javascript:;">关闭</a>
+	<div id="popup_content">
+	</div>
+</div>

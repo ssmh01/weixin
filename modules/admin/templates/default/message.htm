@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+{res:css admin/manage.css}
+{res:css admin/style.css}
+{res:js jquery/jquery-1.5.1.min.js}
+{res:js tab.js}
+<script>
+	var jq = jQuery;
+</script>
+</head>
+<body class="{$background}" id="body_div">
+<div class="KK_ManageNav">
+    <div class="KK_ManageNav_link left"><a href="{config site_url}">{config site_name}首页</a></div>
+</div>
+
+<div class="wrapper960">
+	<div class="KK_ManageIndex_mainbox_inner" >
+    	<div class="KK_ManageIndex_mainbox_inner">
+        	<div class="Error_top"></div>
+		    <div class="Error_box">
+		        <div class="Error_jump">
+		            <h2>{$message}</h2>
+		            {loop $links $link}
+		            <p><a href="{$link[1]}">{$link[0]}</a></p>
+		            {/loop}
+		        </div>
+		    </div>
+		    <div class="Error_bot"></div>
+        </div>
+    </div>	
+</div>
+
+{if $autoUrl}
+<script type="text/javascript" language="javascript">
+    var redirect = "{$autoUrl}";
+    var jump = {$jump};
+    var waittime = {$time};
+    jQuery("#jump_status").css({"float":"right", "margin-right":"20px"}).text("正在转跳...");
+    setTimeout(function(){window.location.href = redirect}, waittime*1000);
+</script>
+{/if}
+</body>
+</html>

@@ -1,0 +1,39 @@
+{gtpl header}
+	<div class="notice_body">
+		<div class="caption">
+			<div class="r">
+				<a href="{url /member/setting/notice/}" class="set">通知设置</a>
+				<a href="/member/notice/ignore/" class="btn read" data-toggle="modal" role="button">全部已读</a>
+			</div>
+			通知
+		</div>
+		{if $items}
+		{foreach $items $item}
+		<div class="notice_list">
+			<div class="notice_item">
+				{$item['notice']} <span>({date $item['create_time']})</span>
+				
+				{if $item['new'] && $item['status'] == 0}
+					<a style="float:right" href="/member/notice/read/?id={$item[id]}" class="btn" id="notice_read_{$item['id']}" onclick="return ajaxmenu(event, this.id, 1, 2000, 'ajaxMenuDeleteV2')">已读</a>
+				{/if}
+				
+				{if $item['status'] == 1}
+					<span style="float: right;" id="applyspan_{$item[id]}">
+						<a style="float:right;" href="/member/notice/friend/?id={$item[id]}&oper=0" class="btn" id="notice_read_{$item['id']}_0" onclick="return ajaxmenu(event, this.id, 1, 2000, 'afterApplyFriend(0,{$item[id]})')">拒绝</a>
+						<a style="float:right; margin-right: 5px;" href="/member/notice/friend/?id={$item[id]}&oper=1" class="btn" id="notice_read_{$item['id']}_1" onclick="return ajaxmenu(event, this.id, 1, 2000, 'afterApplyFriend(1,{$item[id]})')">通过</a>
+					</span>
+				{elseif $item['status'] == 2}
+					<span style="float: right; margin-right: 5px; color: green; font-size: 14px;">已通过</span>
+				{elseif $item['status'] == 3}					
+					<span style="float: right; margin-right: 5px; color: #ff6600; font-size: 14px;">已拒绝</span>
+				{/if}		
+			</div>
+		</div>
+		{/foreach}
+		<div class="clear"></div>
+		{$pages}
+		{else}
+		<p>暂无通知</p>
+		{/if}
+	</div>
+{gtpl footer}

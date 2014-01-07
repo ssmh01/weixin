@@ -1,0 +1,68 @@
+{tpl header}
+
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 用户管理 &gt;&gt; 庄家认证</div>
+            	<div class="seachbox">
+		            <div class="content2">
+		                <form action="{$index_url}" name="searchForm" method="get">
+		                <table class="form-table">
+		                    <tbody>
+		                        <tr>
+		                            <td >
+		                            选择认证状态:
+		                            <select name="status" onchange="window.location.href='{$index_url}?status='+this.value;">
+		                            <option value="" {if !$status}selected{/if}>全部</option>
+		                            <option value="0" {if $status == '0'}selected{/if}>未处理</option>
+		                            <option value="-1" {if $status == '-1'}selected{/if}>已拒绝</option>
+		                            <option value="1" {if $status == '1'}selected{/if}>已通过</option>
+		                            </select>
+		                            </td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+		                </form>
+		            </div>
+		        </div>
+            	
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                    
+	                </span>
+	            </h3>
+	            
+                    {html:table
+                        class=list_table
+                        datas=$items
+                        pk=id
+                        imagepath=/res/images/
+                        fields=[
+                            <"name":"id", "label":"申请用户ID", "align":"center">,
+                            <"name":"title", "label":"申请标题", "align":"center">,
+                            <"name":"summary", "label":"申请语", "align":"center">,
+                            <"name":"create_time", "label":"申请时间", "align":"left",  "type":"date">
+                        ]
+                        ops=[
+                            <"type":"custom", "label":"通过", "module":"admin", "action":"makersAuth","method":"allow", "params":"id">,
+                            <"type":"custom", "label":"拒绝", "module":"admin", "action":"makersAuth","method":"refuse", "params":"id">,
+                            <"type":"custom", "label":"查看用户", "module":"member", "action":"space","method":"index", "params":"id">,
+                            <"type":"delete">
+                        ]
+                    }
+				{if $pages}
+				 <div class="page">
+					{$pages}
+				　</div>
+				 {/if}
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+{tpl footer}

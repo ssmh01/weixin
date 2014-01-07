@@ -1,0 +1,25 @@
+{gtpl header}
+	<div class="article_body">
+        
+		<div class="left">
+			<div class="alink">当前位置：<a href="/">首页</a> > 说明</div>
+			<ul>
+				{if $items}
+				{loop $items $item}
+				<li><a href="{url /news/view/?id=\[$item[id]\]}">{$item['title']}</a> <span>{date $item['create_time'] Y-m-d}</span></li>
+				{/loop}
+				{else}
+				<li>暂无说明</li>
+				{/if}
+			</ul>
+			
+		</div>
+		
+		<div class="right">
+			{tpl categorys}
+		</div>
+		
+		<div class="clear"></div>
+				
+	</div>
+{gtpl footer}

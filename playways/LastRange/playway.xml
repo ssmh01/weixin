@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<playway xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../site.xsd">
+	<name>末位范围玩法</name>
+	<class>LastRange</class>
+	<status>0</status>
+	<summary>末位范围玩法,适用于财经或彩票</summary>
+	<parameter name="sd" label="末位范围" >
+		<option type="range" minValue="0" maxValue="4">0-4</option>
+		<option type="range" minValue="5" maxValue="9">5-9</option>
+	</parameter>
+</playway>

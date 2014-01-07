@@ -1,0 +1,99 @@
+									ＥasyPHP框架使用说明
+>>框架目录说明.
+/：
+	包含框架的公共入口文件EasyPHP.class.php、包机制管理类EasyPacket.class.php、
+	资源管理类R.class.php和框架函数functions.core.php
+action：
+	实现对用户动作和Ａction方法进行匹配和监听。
+cache：
+	实现统一的缓存接口。
+controller：
+	提供对URL进行分发和监听的功能。
+db：
+	提供多种数据库访问方式的支持。
+event：
+	实现框架的基本事件和监听功能。
+exception：
+	实现异常处理机制。
+http：
+	对Http通信的模型进行封装并提供数据存储功能。
+i18n：
+	实现多语言机制。
+logging：
+	日志记录器的实	现。
+model：
+	实现动态模型功能。	
+module：
+	提供对系统模块化的支持。
+view：
+	实现模板的解析和多模板的支持。
+utils：
+	包含简化开的各种工具类库。
+
+
+>>命名规范
+	>类文件都是以.class.php为后缀，使用驼峰法命名，并且首字母大写，例如ActionConfig.class.php。
+	>类名和文件名一致（包括上面说的大小写一致），例如 UserAction类的文件命名是UserAction.class.php， InfoModel类的文件名是InfoModel.class.php。
+	>函数、配置文件等其他类库文件之外的一般是以.php为后缀。
+	>确保文件的命名和调用大小写一致，是由于在类Unix系统上面，对大小写是敏感的。
+	>类方法和函数的命名使用驼峰法命名的方式，例如 getUserName。
+	>属性的命名使用驼峰法，并且首字母小写，例如 userName。
+	>常量以大写字母和下划线命名，例如 MODULE_CONFIG_FILE_NAME和 MODEL_PARAM_PREFIX。
+	>配置参数以小写字母和下划线命名，例如session_callback。
+
+>>伪包机制
+	>包机制会自动引入进行包管理的类文件,不需要自己手动引入
+	>所有的类的名称不能重复,如果重复，将会发生引入不是自己想要的类的行为。
+	>框架根目录和模块根目录是要进行包管理的，如果要引入其它目录，需要配置base_packets项。
+	>包机制只对类进行管理，而且要求类文件名和类名遵循命名规范
+	>包机制不对其实文件进行管理，所以你要手动引入其实文件。
+	>你也可以手动引入类文件或包(一个目录下的所有类文件)，具体查看import函数.
+	
+	
+>>框架配置项说明
+	参考"配置说明.txt"文件
+	
+>>模块配置项说明
+	view_root[string]
+		模块的模板目录，如果没有设置则使用全局模板，风格，后缀则使用全局配置
+	i18n_root[string]
+		模块的语言目录，如果设置了则和全局语言一起使用
+	filter[string]
+		模块的过滤器，针对模块进行预处理
+
+>>R.class.php说明
+	>R类用来进行资源管理，避免一些类的重复创建。
+	>在R类你可以获取到在整个请求中产生的一些重要的对象,如当前请求对象，当前Action对象，当前模板对象对象等等
+	>还可以获取一些工具类如HttpSession, HttpCookie这些单例类
+	
+>> 模型使用说明
+	>模型属于动态模型，不需要创建专门的模型类
+	>模型支持表单数据自己收集，这个功能依赖于表单字段的名称格式以某个前缀开始，前缘配置查看Constant::MODEL_PARAM_PREFIX
+	>模型支持验证功能，依赖于模型配置文件
+	>提供操作模型的数据库ActiveRecord类
+	>详细请参考例子
+	
+>> 定义标签说明
+	>自定义的标签类文件要放置到/view/tags文件夹下面
+	>在/view/tagmap.php里添加标签和类的映射
+	
+>>国际化说明
+	1.语言文件是一个php文件,这个php返回一个数组,数组里包含语言的键值对.
+	2.控制变量名在Constant中定义,一个是用来控制语言文件的基本名称,一个
+	  是用来控制语言文件的本地信息,属于内置变量.
+	3.框架选择语言文件的顺序:
+	->查看HttpRequest中用来控制语言的变量
+	->查看HttpSession中用来控制语言的变量
+	->查看mvc配置
+	->查看请求头Accept-Language的值,选择它的第一个值
+	->根据服务器语言环境
+	
+
+>> 入口文件
+	EasyPHP采用单一入口模式进行项目部署和访问，无论完成什么功能，一个项目只有一个统一的入口。入口文件的代码主要是下面几句：
+
+	define('WEB_ROOT', rtrim(dirname(__FILE__), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR);
+	include_once WEB_ROOT . 'easyphp/EasyPHP.class.php';
+	//配置文件.
+	$configFile = WEB_ROOT . 'config.php';
+	EasyPHP::doItEasy($configFile);

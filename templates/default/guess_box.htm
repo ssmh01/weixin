@@ -1,0 +1,62 @@
+{if $guesses}
+{loop $guesses $item}
+
+{if $item[cate_id] != 0}
+	{run $parentId = $guessCategory[$item[cate_id]]['parent_id'];}
+	{run if($parentId == 0) $categoryId = $item[cate_id]; else $categoryId = $parentId;}		
+	{run $categoryName = $guessCategory[$categoryId]['name'];}
+{/if}
+
+<div class="guessitem">
+<p class="c">
+	{if $item[cate_id] != 0}
+	<a href="/guess/list/?cateid={$categoryId}">[{$categoryName}]</a>
+	{else}
+	<a href="/guess/list/?cateid=0&custom=1">[自定义]</a>
+	{/if}
+	<a href="{url /guess/view/?id=$item[id]}">{$item[title]}</a>
+</p>
+<p class="t"><span>竞猜时间：</span>{date $item['play_start_time'] Y年m月d日H:i} － {date $item['play_deadline'] Y年m月d日H:i}</p>
+<p class="t"><span>发布庄家：</span><a href="{url /member/space/?uid=$item[user_id]}">{$_USERS[$item[user_id]]['name']}</a></p>
+<p class="t"><span>竞猜玩法：</span></p>
+<ul class="g">
+	{if $item['play_datas']}
+	{loop $item['play_datas'] $playWayData}
+	<li>{$playWayData->getName()}</li>
+	{/loop}
+	{else}
+	<li>自定义玩法</li>
+	{/if}
+</ul>
+<p class="r">
+	{if $item['odds_type'] == 3}
+	<!--
+	<img src="{res:image f1.gif}" /> &nbsp;&nbsp;
+	<img src="{res:image f2.gif}" />
+	-->
+	<span class="label label-success">浮动赔率</span>
+	<span class="label label-important">固定赔率</span>
+	{elseif $item['odds_type'] == 2}
+	<span class="label label-success">浮动赔率</span>
+	<!-- <img src="{res:image f1.gif}" /> -->
+	{elseif $item['odds_type'] == 1}
+	<!-- <img src="{res:image f2.gif}" /> -->
+	<span class="label label-important">固定赔率</span>
+	{/if}
+</p>
+<div class="rinfo">
+	<p class="user">参与人数</p>
+	<p class="val">{$item['play_count']}</p>
+	{if $item['custom']}
+	<p class="tab">自定义</p>
+	{else}
+	<p class="tab">投注{if $item['wealth_type'] == Guess::WEALTH_TYPE_MONEY}金币{else}积分{/if}</p>
+	<p class="val">{$item['play_wealth']}</p>
+	{/if}
+	
+</div>
+</div>
+{/loop}
+{else}
+<div>暂无信息</div>
+{/if}

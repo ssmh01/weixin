@@ -1,0 +1,22 @@
+{gtpl header}
+	<div class="home_body">
+		{tpl space_user_info_box}
+		
+		<div class="left">
+	        <ul class="nav nav-tabs" id="home_tab">
+	        	<li class="active"><a href="{url /member/space/guess/?uid=\[$user->getId()\]}">他的竞猜</a></li>
+	        </ul>
+			
+			{tpl space_guess_box}
+		</div>
+		
+		<div class="right">
+			<div class="ulist" style="border: 0px;">
+				<div class="title" style="border-radius: 0px;" >他的好友</div>
+					{gtpl users_list_box}		
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+{gtpl footer}

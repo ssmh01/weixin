@@ -1,0 +1,49 @@
+{gtpl header}
+{res:js uploadify/swfobject.js}
+{res:js uploadify/jquery.uploadify.v2.1.4.min.js}
+	<div class="setting_body">
+		<div class="caption">通知动态设置</div>
+        <ul class="nav nav-tabs" id="setting_tab">
+        	<li><a href="/member/weibo/">微博绑定</a></li>
+	        <li><a href="/member/setting/password/">密码设置</a></li>			
+			<li class="active"><a href="/member/setting/notice/">通知动态</a></li>
+	        <li><a href="/member/setting/base/">基本资料</a></li>			
+        </ul>
+        
+        <div class="tab-content setting_list">
+	        
+			<!-- 通知动态 -->
+			<div class="tab-pane active" id="t2">
+				<form action="/member/setting/notice/" method="post">
+				<div class="title">通知设置</div>
+				{php}
+					$configTemplate = $user->getConfigTemplate();
+					$configs = $user->getConfigs();
+				{/php}
+				<div class="content">
+					<div class="tip">什么情况下给我发送通知</div>
+					{loop  $configTemplate['notice'] $key $name}
+					<label class="checkbox ls"><input type="checkbox" name="{$key}" value="1" {if $configs[$key]}checked{/if}>{$name}</label>
+					{/loop}
+					<div class="controls-row"></div>
+				</div>
+
+				<div class="title">动态设置</div>
+				<div class="content">
+					{loop $configTemplate['trend'] $key $config}
+						<div class="tip">{$config['name']}</div>
+						{loop $config['options'] $value $name}
+						<label class="radio ls"><input type="radio" name="{$key}" value="{$value}" {if $configs[$key] == $value}checked="checked"{/if}> {$name}</label>
+						{/loop}
+					{/loop}
+					<div class="controls-row"></div>
+				</div>
+				
+				<div class="setting_btn">
+					<input type="submit" value="保存修改" class="btn btn-primary savebtn" />
+				</div>		
+				</form>	        
+			</div>
+        </div>
+	</div>
+{gtpl footer}

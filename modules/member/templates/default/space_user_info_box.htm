@@ -1,0 +1,24 @@
+<div class="userzl">
+	<div class="top">
+		<p>用户名：<span>{$spaceUser->getName()}</span></p>
+		<p>性别：<span>{if $spaceUser->getSex() == '1'}男{elseif $spaceUser->getSex() == '2'}女{else}不详{/if}</span></p>
+		<p>年龄：<span>{$spaceUser->getAge()}</span></p>
+		<p>现居地：<span>{$spaceUser->getProvince()} {$spaceUser->getCity()}</span></p>
+		<p style="clear: left;">个人签名：<span>{$spaceUser->getSign()}</span></p>
+		<p>个人主页：<span>{$spaceUser->getWebsite()}</span></p>
+		<p>被浏览：<span>{$spaceUser->getViews()}</span></p>
+	</div>
+	<div class="bottom">
+		<p>庄家级别：<span>{if $spaceUser->getMakersLevel()}已认证{else}未认证{/if}</span></p>
+		<p>竞猜：<span>{$spaceUser->getGuessCount()}场</span></p>
+		<p>准确率：<span>{$spaceUser->getAccuracy()}%</span></p>
+		{if $user->getId() == $spaceUser->getId()}
+		<p style="clear: left;">当前积分：<span>{$spaceUser->getAvailableIntegral()}</span> <a class="btn btn-primary" href="/member/integral/io/" >查看明细</a></p>
+		<p>
+			当前金币：<span>{$spaceUser->getAvailableMoney()}</span>
+			<a class="btn btn-primary"  href="/member/recharge/index/" id="money_recharge" onclick="ajaxmenu(event, this.id, 1)">充 值</a>&nbsp; &nbsp; <a class="btn btn-primary"  href="/member/money/handsel/" id="money_handsel" onclick="ajaxmenu(event, this.id, 1)">转 赠</a>&nbsp; &nbsp; <a class="btn btn-primary" href="/member/money/io/" >查看明细</a>
+		</p>
+		{/if}
+	</div>
+	<div class="face"><img src="{$spaceUser->getAvatar()}" /></div>
+</div>

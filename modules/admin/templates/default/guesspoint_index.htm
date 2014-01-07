@@ -1,0 +1,108 @@
+{tpl header}
+
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 竞猜管理 &gt;&gt; 竞猜</div>
+            	<div class="seachbox">
+		            <div class="content2">
+		                <form action="{$index_url}" name="searchForm" method="get">
+		                <table class="form-table">
+		                    <tbody>
+		                        <tr>
+		                            <td >
+		                                标题:
+		                                <input type="text" class="txt" name="title" value="{param title}" style="width:100px" />
+		                                 &nbsp;
+		                               	分类:
+		                               	<select name="cateid" onchange="subCategorySelect(this.value, 'sub_cateid')">
+		                               		<option value="0" {if !$cateid}selected{/if}>全部</option>
+		                               		{loop $rootCategorys $category}
+		                               		<option value="{$category['id']}" {if $cateid == $category['id']}selected{/if}>{$category['name']}</option>
+		                               		{/loop}
+		                               	</select>
+		                               	<select name="sub_cateid" id="sub_cateid">
+		                               		<option value="0" {if !$sub_cateid}selected{/if}>全部</option>
+		                               		{loop $subCategorys $category}
+		                               		<option value="{$category['id']}" {if $sub_cateid == $category['id']}selected{/if}>{$category['name']}</option>
+		                               		{/loop}
+		                               	</select>
+				                         &nbsp;
+		                                创建时间
+		                                 <input class="Wdate" type="text" name="startTime" value="{param startTime}" onClick="WdatePicker({'dateFmt':'yyyy-MM-dd HH:mm'})" style="width:150px" />
+                                            -
+                                            <input class="Wdate" type="text" name="endTime" value="{param endTime}" onClick="WdatePicker({'dateFmt':'yyyy-MM-dd HH:mm'})" style="width:150px" />
+		                            </td>
+		                            <td><input class="regular-button" type="submit" value="搜索" /></td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+		                </form>
+		            </div>
+		        </div>
+            	
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                     <a href="{$act_url}add/" style="float: right;">添加</a>
+	                </span>
+	            </h3>
+	            
+                    <table id="" class="list_table" cellpadding="0" cellspacing="0" border="0">
+					<thead>
+					<tr>
+						<th align="left">竞猜点标题</th>
+						<th align="left">竞猜分类</th>
+						<th align="left">竞猜个数</th>
+						<th align="left">参与截止时间</th>
+						<th align="left">创建时间</th>
+						<th align="left" width="180px">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+						{loop $items $item}
+						<tr>
+								<td align="left">{$item['title']}</td>
+								<td align="left">{$categorys[$item[cate_id]]['name']}</td>
+								<td align="left">{$item['guess_count']}</td>
+								<td align="left">{date $item['play_deadline'] Y-m-d H:i}</td>
+								<td align="left">{date $item['create_time'] Y-m-d H:i}</td>
+								<td align="left">
+									{if $item['status'] == GuessPoint::STATUS_RUDGED}
+									已判定，无操作
+									{elseif $item['status'] == GuessPoint::STATUS_NORMAL}
+										{if time() > $item['play_deadline']}
+											<a href="{url /$currentModule/$currentAction/result/?id=$item[id]}">结果判定</a>&nbsp;
+										{/if}
+										{if !$item['guess_count']}
+											<a href="{url /$currentModule/$currentAction/edit/?id=$item[id]}">编辑</a>&nbsp;
+											<a href="{url /$currentModule/$currentAction/del/?id=$item[id]}">删除</a>&nbsp;
+										{/if}
+									{else}
+										<a href="{url /$currentModule/$currentAction/enable/?id=$item[id]}">启用</a>&nbsp;
+										{if !$item['guess_count']}
+											<a href="{url /$currentModule/$currentAction/edit/?id=$item[id]}">编辑</a>&nbsp;
+											<a href="{url /$currentModule/$currentAction/del/?id=$item[id]}">删除</a>&nbsp;
+											<a href="{url /$currentModule/$currentAction/param/?id=$item[id]}">编辑参数</a>&nbsp;
+										{/if}
+									{/if}
+								</td>
+						</tr>
+						{/loop}
+					</tbody>
+					</table>
+				{if $pages}
+				 <div class="page">
+					{$pages}
+				　</div>
+				 {/if}
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+{tpl footer}

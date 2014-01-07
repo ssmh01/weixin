@@ -1,0 +1,26 @@
+<div class="KK_ManageList_l_side left">
+	<div class="KK_ManageList_menu">
+    	<div class="KK_ManageList_menu_top"><h2>功能菜单</h2></div>
+        <div class="KK_ManageList_menu_con">
+        	<ul class="KK_ManageList_menu_list">
+        	{loop $menu_list $v}
+				<li>
+					<dl class="tit" {if $v['url']}style="cursor:pointer;" onclick="window.location.href='{$v['url']}'"{/if}>{$v[name]}</dl>
+	                <dl class="submenu">
+	                {loop $v[sub] $_v}
+	                    <dd class="submenu">
+	                        {if $_v['url']}
+	                        <a href="{$_v['url']}">{$_v['name']}</a>
+	                        {else}
+	                        {$_v[name]}
+	                        {/if}
+	                    </dd>
+	                {/loop}
+	                </dl>
+                </li>
+            {/loop}
+            </ul>
+        </div>
+        <div class="KK_ManageList_menu_bot"></div>
+    </div>
+</div>

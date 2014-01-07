@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$seo['title']}</title>
+<meta name="description" content="{$seo['description']}" />
+<meta name="keywords" content="{$seo['keywords']}" />
+{res:css bootstrap.min.css}
+{res:js bootstrap.min.js}
+{res:js jquery/jquery-1.9.0.min.js}
+{res:js bootstrap-modal.js}
+{res:js bootstrap-tab.js}
+{res:js bootstrap-dropdown.js}
+{res:js global.js}
+{res:js string.extends.js}
+{res:js functions.js}
+{res:js validation/jquery.validate.min.js}
+{res:js validation/additional-methods.min.js}
+{res:css style.css}
+</head>
+<body>
+	<div class="container reg_header"><a href="{config site_url}"><img src="{res:image logo.gif}" /></a></div>
+	
+	<div class="setting_body" style="border-radius: 10px;">
+		<div class="caption">帐号设置</div>
+        <ul class="nav nav-tabs" id="setting_tab">
+	        <li><a href="#t2">新建帐号</a></li>			
+	        <li><a href="#t1">帐号绑定</a></li>
+	    </ul>
+        
+		<form action="/member/login/bind/" method="post">
+		<input type="hidden" name="type" id="type" value="bind" />
+		<input type="hidden" name="weibo_id" value="{$weibo_id}" />
+		<input type="hidden" name="account" value="{$account}" />
+		<input type="hidden" name="datas" value="{$datas}" />
+        <div class="tab-content setting_list">
+	        
+			<!-- 帐号绑定 -->
+	        <div class="tab-pane" id="t1">
+				<dl class="dl-horizontal ml40">
+					<dt>用户名：</dt>
+					<dd>
+						<input type="text" name="bind_name" value="" class="span3" />
+					</dd>
+					<dt>密码：</dt>
+					<dd>
+						<input type="password" name="bind_password" value="" class="span3" />
+					</dd>
+				</dl>				        	
+	        </div>
+			
+			<!-- 新建帐号 -->
+	        <div class="tab-pane" id="t2">
+				<dl class="dl-horizontal ml40">
+					<dt>用户名：</dt>
+					<dd>
+						<input type="text" name="register_name" value="" class="span3" />
+					</dd>
+					<dt>密码：</dt>
+					<dd>
+						<input type="password" name="register_password" value="" class="span3" />
+					</dd>
+					<dt>邮箱：</dt>
+					<dd>
+						<input type="text" name="register_email" value="" class="span3" />
+					</dd>
+				</dl>				        	
+	        </div>			
+			
+			<div class="setting_btn">
+				<input type="submit" value="提交" class="btn btn-primary savebtn" />
+			</div>
+			
+        </div>
+		</form>
+         
+		<script type="text/javascript">
+			$('#setting_tab a').click(function (e) {
+				e.preventDefault();
+				if(e.target.attributes[0].nodeValue=='#t1')
+				{
+					$("#type").val("bind");
+				}
+				else
+				{
+					$("#type").val("register");
+				}
+				$(this).tab('show');
+			})
+			$(function () {
+				$('#setting_tab a[href="#t1"]').tab('show');
+			})
+		</script>
+				
+	</div>
+	
+	<div class="footer">
+		<div class="footer_bottom">
+			<div class="footer_bottom_body">
+				 <span class="pull-right">{config site_name}</span>
+				 <span>{config copyright}</span>				
+			</div>			
+		</div>
+	</div>
+	
+</body>
+</html>

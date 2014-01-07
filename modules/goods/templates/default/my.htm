@@ -1,0 +1,50 @@
+{gtpl header}
+	<div class="exchange_body">
+        <ul class="nav nav-tabs" id="exchange_tab">
+	        <li><a href="/goods/list/">所有奖品</a></li>			
+			<li  class="active"><a href="/goods/my/">我的奖品</a></li>
+        </ul>
+        
+        <div class="tab-content exchange_list">
+			<div id="t2">
+		        <table class="table table-striped myex">
+		       	<thead>
+				<tr>
+					<th>奖品名称</th>
+					<th>获取方式</th>
+					<th>收货地址</th>
+					<th>状态</th>
+					<th>操作</th>
+		       	</tr>
+				</thead>
+				<tbody>
+				{if $items}
+				{loop $items $item}
+				<tr>
+					<td><a target="_blank" href="{url /goods/view/?id=$item[goods_id]}" title="{$goods[$item['goods_id']][title]}">{cut $goods[$item[goods_id]][title] 16}</a></td>
+					<td>{if $item['is_exchange']}兑换{else}抽奖{/if}</td>
+					<td>{$item['address']} {$item['username']} {$item['mobile']}</td>
+					<td>{if $item['receive_status']}已收货{elseif $item['send_status']}已发货{else}未发货{/if}</td>
+					<td>
+					{if $item['send_status'] && !$item['receive_status']}
+					<a href="/goods/exchange/receive/?id={$item['id']}" onclick="return comfirmAjaxMenu(event, this.id, 1, 2000, 'refreshPage(2000)')" id="exchange_receive_{$item[id]}">确认收货</a>
+					{else}
+					无操作
+					{/if}
+					</td>
+				</tr>
+				{/loop}
+				{else}
+				<tr>
+					<td colspan="5">没有找到你的奖品记录</td>
+				</tr>
+				{/if}
+				
+				</tbody>								
+		        </table>	        
+			</div>
+			{$pages}
+        </div>
+         
+	</div>
+{gtpl footer}

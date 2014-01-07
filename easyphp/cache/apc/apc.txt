@@ -1,0 +1,121 @@
+PHP 手册
+上一页		下一页
+III. APC 可选 PHP 缓存
+
+简介
+
+
+ Alternative PHP Cache（APC）是 PHP 的一个免费公开的优化代码缓存。它用来提供免费，公开并且强健的架构来缓存和优化 PHP 的中间代码。
+
+安装
+
+
+ 本 PECL 扩展未绑定于 PHP 中。
+
+
+ 安装此 PECL 扩展库的信息可在手册中标题为 PECL 扩展库安装的一章中找到。 更多信息如新版本，下载，源文件，维护者信息以及更新日志等可以在这里找到：http://pecl.php.net/package/apc。
+
+
+ 可以从 PHP 下载页面或者 http://snaps.php.net/ 下载此 PECL 扩展的 DLL 文件。
+
+注意: 在 Windows 下，APC 要求有 c:\tmp 目录，并且该目录要对 Web 服务器进程可写。
+
+注意: 更多深入且高度专业的文档，见开发者提供的 TECHNOTES 文件。
+
+运行时配置
+
+这些函数的行为受 php.ini 的影响。
+
+
+ 尽管默认的 APC 设定对于大多数安装已经没问题，但专业人员应考虑调整以下参数。
+
+表 1. APC configuration options
+
+名称	默认值	可修改范围	更新记录
+apc.enabled	"1"	PHP_INI_ALL	 
+apc.shm_segments	"1"	PHP_INI_SYSTEM	 
+apc.shm_size	"30"	PHP_INI_SYSTEM	 
+apc.optimization	"0"	PHP_INI_ALL	 
+apc.num_files_hint	"1000"	PHP_INI_SYSTEM	 
+apc.ttl	"0"	PHP_INI_SYSTEM	 
+apc.gc_ttl	"3600"	PHP_INI_SYSTEM	 
+apc.cache_by_default	"1"	PHP_INI_SYSTEM	 
+apc.filters	NULL	PHP_INI_SYSTEM	 
+apc.mmap_file_mask	NULL	PHP_INI_SYSTEM	 
+apc.slam_defense	"0"	PHP_INI_SYSTEM	 
+apc.file_update_protection	"2"	PHP_INI_SYSTEM	 
+apc.enable_cli	"0"	PHP_INI_SYSTEM	> APC 3.0.6
+有关 PHP_INI_* 常量进一步的细节与定义参见附录 H。
+以下是配置选项的简要解释。
+
+apc.enabled boolean
+apc.enabled 可以设成 0 来禁用 APC。这主要是用在当 APC 被静态编译入 PHP 时，因为没有其它方法来禁用了（编译为 DSO 的时候，可以将 php.ini 中的 extension 行注释掉）。
+
+apc.shm_segments integer
+
+ 对编译器缓存要分配的共享内存块的数目。如果 APC 用光了共享内存但是已经将 apc.shm_size 设为了系统所能允许的最大值，可以尝试增大此值。
+
+apc.shm_size integer
+
+ 以 MB 为单位的每个共享内存块的大小。默认时，有些系统（包括大多数 BSD 变种）的共享内存块大小非常低。
+
+apc.optimization integer
+
+ 优化级别。设为 0 则禁用优化器，更高的值则使用更主动的优化。期望非常有限的速度提升。尚在试验中。
+
+apc.num_files_hint integer
+
+ Web 服务器上的被包含或被请求的不同源文件的数目的大概估计。如果不确定则设为 0 或去掉此项；此设定主要用在有数千个源文件的站点。
+
+apc.ttl integer
+
+ 缓存条目在缓冲区所允许的空闲时间的秒数。将此设为零意味着缓冲区有可能被阻赛了的缓存充满而导致新条目不被缓存。
+
+apc.gc_ttl integer
+
+ 缓存条目在垃圾回收表中能够存在的秒数。此值提供了一个安全措施，即在服务器进程在执行缓存的源文件时，如果该文件被修改则旧版本将不会被回收，直到达到此 TTL 为止。设为零将禁用此特性。
+
+apc.cache_by_default boolean
+
+ 默认为 on，但可以设为 off 并和加号开头的 apc.filters 一起用，则文件仅在匹配过滤器时被缓存。
+
+apc.filters string
+
+ 一个以逗号分隔的 POSIX 扩展正则表达式的列表。如果任一个模式匹配源文件名，则该文件不被缓存。注意用来匹配的文件名是传递给 include/require 的文件名，而不是绝对路径。如果正则表达式的第一个字符是 + 则意味着任何匹配表达式的文件会被缓存，如果第一个字符是 - 则任何匹配项都不会被缓存。- 是默认值，可以省略掉。
+
+apc.mmap_file_mask string
+
+ If compiled with MMAP support by using --enable-mmap this is the mktemp-style file_mask to pass to the mmap module for determing whether your mmap'ed memory region is going to be file-backed or shared memory backed. For straight file-backed mmap, set it to something like /tmp/apc.XXXXXX (exactly 6 Xs). To use POSIX-style shm_open/mmap put a .shm somewhere in your mask. e.g. /apc.shm.XXXXXX You can also set it to /dev/zero to use your kernel's /dev/zero interface to anonymous mmap'ed memory. Leaving it undefined will force an anonymous mmap.
+
+apc.slam_defense integer
+
+ On very busy servers whenever you start the server or modify files you can create a race of many processes all trying to cache the same file at the same time. This option sets the percentage of processes that will skip trying to cache an uncached file. Or think of it as the probability of a single process to skip caching. For example, setting apc.slam_defense to 75 would mean that there is a 75% chance that the process will not cache an uncached file. So, the higher the setting the greater the defense against cache slams. Setting this to 0 disables this feature.
+
+apc.file_update_protection integer
+
+ When you modify a file on a live web server you really should do so in an atomic manner. That is, write to a temporary file and rename (mv) the file into its permanent position when it is ready. Many text editors, cp, tar and other such programs don't do this. This means that there is a chance that a file is accessed (and cached) while it is still being written to. This apc.file_update_protection setting puts a delay on caching brand new files. The default is 2 seconds which means that if the modification timestamp (mtime) on a file shows that it is less than 2 seconds old when it is accessed, it will not be cached. The unfortunate person who accessed this half-written file will still see weirdness, but at least it won't persist. If you are certain you always atomically update your files by using something like rsync which does this correctly, you can turn this protection off by setting it to 0. If you have a system that is flooded with io causing some update procedure to take longer than 2 seconds, you may want to increase this a bit.
+
+apc.enable_cli integer
+
+ Mostly for testing and debugging. Setting this enables APC for the CLI version of PHP. Normally you wouldn't want to create, populate and tear down the APC cache on every CLI request, but for various test scenarios it is handy to be able to enable APC for the CLI version of APC easily.
+
+资源类型
+
+本扩展模块未定义任何资源类型。
+
+预定义常量
+
+本扩展模块未定义任何常量。
+
+目录
+apc_add --  Cache a variable in the data store (only if it's not stored)
+apc_cache_info --  Retrieves cached information (and meta-data) from APC's data store
+apc_clear_cache --  Clears the APC cache
+apc_define_constants --  Defines a set of constants for retrieval and mass-definition
+apc_delete --  Removes a stored variable from the cache
+apc_fetch --  Fetch a stored variable from the cache
+apc_load_constants --  Loads a set of constants from the cache
+apc_sma_info --  Retrieves APC's Shared Memory Allocation information
+apc_store --  Cache a variable in the data store
+上一页	起始页	下一页
+virtual	上一级	apc_add

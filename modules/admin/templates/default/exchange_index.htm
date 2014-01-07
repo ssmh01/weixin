@@ -1,0 +1,95 @@
+{tpl header}
+
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 商城管理 &gt;&gt; 兑换抽奖</div>
+            	<div class="seachbox">
+		            <div class="content2">
+		                <form action="{$index_url}" name="searchForm" method="get">
+		                <table class="form-table">
+		                    <tbody>
+		                        <tr>
+		                            <td width="10px">
+		                                <img src="{res:image icon_search.gif}" border="0" alt="SEARCH" />
+		                            </td>
+		                            <td >
+		                                用户ID:
+		                                <input type="text" class="txt" name="userId" value="{param userId}" style="width:100px" />
+		                                 &nbsp;
+		                               	发货状态:
+		                               	<select name="sendStatus">
+		                               		<option value="0" {if !$sendStatus}selected{/if}>全部</option>
+		                               		<option value="1" {if $sendStatus == 1}selected{/if}>未发货</option>
+		                               		<option value="2" {if $sendStatus == 2}selected{/if}>已发货</option>
+		                               	</select>
+				                         &nbsp;
+		                                创建时间
+		                                 <input class="Wdate" type="text" name="startTime" value="{param startTime}" onClick="WdatePicker({'dateFmt':'yyyy-MM-dd HH:mm'})" style="width:150px" />
+                                            -
+                                            <input class="Wdate" type="text" name="endTime" value="{param endTime}" onClick="WdatePicker({'dateFmt':'yyyy-MM-dd HH:mm'})" style="width:150px" />
+		                            </td>
+		                            <td><input class="regular-button" type="submit" value="搜索" /></td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+		                </form>
+		            </div>
+		        </div>
+            	
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                </span>
+	            </h3>
+                    <table id="" class="list_table" cellpadding="0" cellspacing="0" border="0">
+					<thead>
+					<tr>
+						<th align="left">商品</th>
+						<th align="left">用户</th>
+						<th align="left">收件人</th>
+						<th align="left">收件手机</th>
+						<th align="left">收件地址</th>
+						<th align="left">兑换/抽奖</th>
+						<th align="left">发货状态</th>
+						<th align="left">创建时间</th>
+						<th align="left" width="100px">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+						{loop $items $item}
+						<tr>
+								<td align="left"><a href="{url /goods/view/?id=$item[goods_id]}" target="_blank">{$goodses[$item['goods_id']]['title']}</a></td>
+								<td align="left"><a href="{url /admin/user/view/?id=$item[user_id]}" target="_blank">{$users[$item['user_id']]['name']}</a></td>
+								<td align="left">{$item['username']}</td>
+								<td align="left">{$item['mobile']}</td>
+								<td align="left">{$item['address']}</td>
+								<td align="left">{if $item['is_lottery']}抽奖{else}兑换{/if}</td>
+								<td align="left">{if $item['send_status']}已发货{else}未发货{/if}</td>
+								<td align="left">{date $item['create_time'] Y-m-d}</td>
+								<td align="left">
+									{if !$item['send_status']}
+									<a href="{url $currentModule/$currentAction/shipments/?id=$item[id]}" onclick="return opConfirm();">发货</a>
+									{else}
+									无操作
+									{/if}
+								</td>
+						</tr>
+						{/loop}
+					</tbody>
+					</table>
+				{if $pages}
+				 <div class="page">
+					{$pages}
+				　</div>
+				 {/if}
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+{tpl footer}

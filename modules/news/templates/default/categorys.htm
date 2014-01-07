@@ -1,0 +1,6 @@
+<ul>
+	<li><a href="{url /news/list/}">全部</a></li>
+	{loop $categorys $category}
+	<li><a href="{url /news/list/?cate=\[$category['id']\]}">{$category['name']}</a></li>
+	{/loop}
+</ul>

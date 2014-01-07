@@ -1,0 +1,75 @@
+{tpl header}
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; {lang system_setting} &gt;&gt; 修改菜单</div>
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                    <a href="{$index_url}" style="float: right;">菜单列表</a>
+	                </span>
+                </h3>
+                <form action="{$update_url}" method="post" onsubmit="return checkForm(this);">
+                    <div class="KK_content_list2_con marginTop10">
+                        <div class="KK_content_list2_table">
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name">上级菜单</td>
+                                    <td class="cot">
+                                        {html:select
+                                        name=parent_id
+                                        options=$parents
+                                        key=id:name
+                                        current=$item[parent_id]
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name"><span class="must">*</span>菜单名称</td>
+                                    <td class="cot"><input type="text" class="txt" name="name" value="{$item[name]}" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="name">菜单链接</td>
+                                    <td class="cot"><input type="text" class="txt" name="url" value="{$item[url]}" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="name">{lang common_is_show}</td>
+                                    <td class="cot">
+                                        <input class="rad" type="radio" name="status" value="1"{$selShow[1]} />{lang yes}
+                                        <input class="rad" type="radio" name="status" value="0"{$selShow[0]} />{lang no}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">{lang sort_common}</td>
+                                    <td class="cot"><input type="text" class="txt" name="sort_num" value="{$item[sort_num]}" /></td>
+                                </tr>
+                            </table>
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name">&nbsp;</td>
+                                    <td class="cot">
+                                        <input type="hidden" name="id" value="{$item[id]}" />
+                                        <input type="submit"class="btn" value="保  存"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{tpl footer}

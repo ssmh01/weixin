@@ -1,0 +1,367 @@
+{gtpl header}
+{res:js uploadify/swfobject.js}
+{res:js uploadify/jquery.uploadify.v2.1.4.min.js}
+	<div class="setting_body">
+		<div class="caption">用户设置</div>
+        <ul class="nav nav-tabs" id="setting_tab">
+        	<li><a href="#t7">申请认证</a></li>
+	        <li><a href="#t6">我的积分</a></li>
+	        <li><a href="#t5">我的金币</a></li>
+	        <li><a href="#t4">安全设置</a></li>			
+	        <li><a href="#t3">帐号绑定</a></li>
+			<li><a href="#t2">通知动态</a></li>
+	        <li><a href="#t1">基本资料</a></li>			
+        </ul>
+        
+        <div class="tab-content setting_list">
+	        
+			<!-- 基本资料 -->
+			<div class="tab-pane active" id="t1">
+				<form action="/member/setting/base/" method="post">
+				<dl class="dl-horizontal">
+					<dt>邮箱：</dt>
+					<dd class="c9">{$user->getEmail()}</dd>
+					<dt>用户：</dt>
+					<dd class="c9">{$user->getName()}</dd>
+					<dt>性别：</dt>
+					<dd>
+						<label class="radio inline">
+							<input type="radio" name="sex" value="1" {if $user->getSex() == '1'}checked="checked"{/if} /> 男
+						</label>
+						<label class="radio inline">
+							<input type="radio" name="sex" value="2" {if $user->getSex() == '2'}checked="checked"{/if}/> 女
+						</label>				
+					</dd>
+					<dt>生日：</dt>
+					<dd>
+						<select name="birthday_year">
+						{php}
+						 for($i=1900;$i<=2013;$i++){
+						 	$sel = '';
+							if($user->getBirthDayYear() == $i) $sel='selected="selected"';
+							echo '<option value="$i" $sel>$i</option>';						 
+						 }
+						{/php}	
+							
+						</select> 年
+						
+						<select name="birthday_month">
+							
+							
+						</select> 月
+						
+						<select name="birthday_day">
+							
+							
+						</select> 日
+						
+						<input type="text" class="w80" name="birthday_year" value="{$user->getBirthDayYear()}"> 年 <input type="text" class="w80" name="birthday_month" value="{$user->getBirthDayMonth()}"> 月 <input type="text" class="w80" name="birthday_day" value="{$user->getBirthDayDay()}"> 日
+					</dd>
+					<dt>现居地：</dt>
+					<dd>
+						<input type="text" class="w80" name="province" value="{$user->getProvince()}"> 省 <input type="text" class="w80" name="city" value="{$user->getCity()}"> 市
+					</dd>
+					<dt>个性签名：</dt>
+					<dd>
+						<input type="text" class="span3" name="sign" value="{$user->getSign()}" />
+					</dd>
+					<dt>个性网址：</dt>
+					<dd class="c9 bb">
+						 <input type="text" class="span3" name="website" value="{$user->getWebsite()}"/>
+					</dd>					
+				</dl>
+				
+				<div class="userface">
+					<img src="{$user->getAvatar()}" id="avatar_preview"/>
+					<input type="hidden" id="avatar" name="avatar" value="{$user->getAvatar()}">
+					<p>头像设置(72*72px)</p>
+					<p>支持jpg/gif/png等格式的图片</p>
+					<p>
+					<input id="file_upload" width="54" height="28" type="file" />
+					<img style="margin-left:28px;width:16px;height:16px;display:none" id="avatar_edit_waiting" src="/res/images/loading.gif">
+					</p>
+				</div>
+				
+				<div class="setting_btn">
+					<input type="submit" value="保存修改" class="btn btn-primary savebtn" />
+				</div>
+				</form>				
+	        </div>
+	        
+			<!-- 通知动态 -->
+			<div class="tab-pane" id="t2">
+				<form action="/member/setting/config/" method="post">
+				<div class="title">通知设置</div>
+				<div class="content">
+					<div class="tip">什么情况下给我发送通知</div>
+					{php}
+					$configTemplate = $user->getConfigTemplate();
+					$configs = $user->getConfigs();
+					{/php}
+					{loop  $configTemplate['notice'] $key $name}
+					<label class="checkbox ls"><input type="checkbox" name="{$key}" value="1" {if $configs[$key]}checked{/if}>{$name}</label>
+					{/loop}
+					<div class="controls-row"></div>
+				</div>
+
+				<div class="title">动态设置</div>
+				<div class="content">
+					<div class="tip">按条件</div>
+					<label class="radio ls"><input type="radio" name="cond" checked="checked"> 显示全站竞猜</label>
+					<label class="radio ls"><input type="radio" name="cond"> 显示好友竞猜</label>
+					<div class="tip">按时间</div>
+					<label class="radio ls"><input type="radio" name="time" checked="checked"> 当天发布的竞猜</label>
+					<label class="radio ls"><input type="radio" name="time"> 三天之内发布的竞猜</label>
+					<label class="radio ls"><input type="radio" name="time"> 七天之内发布的竞猜</label>
+					<div class="controls-row"></div>
+				</div>
+				
+				<div class="setting_btn">
+					<input type="submit" value="保存修改" class="btn btn-primary savebtn" />
+				</div>		
+				</form>	        
+			</div>
+			
+			<!-- 帐号绑定 -->
+	        <div class="tab-pane" id="t3">
+	        	<div class="title">未绑定帐号</div>
+				
+				<table class="table abind">
+		        <tr>
+		        	<td>腾讯QQ</td>
+					<td><input type="button" class="btn pull-right abindbtn" value=" 绑 定 " /></td>
+		        </tr>
+				<tr>
+		        	<td>新浪微博</td>
+					<td><input type="button" class="btn pull-right abindbtn" value=" 绑 定 " /></td>
+		        </tr>
+		        </table>
+				
+				<div class="title">已绑定帐号</div>	
+		        <table class="table abind">
+		        <tr>
+		        	<td>腾讯QQ：小三哥</td>
+					<td><input type="button" class="btn pull-right abindbtn" value="取消绑定" /></td>
+		        </tr>
+		        </table>
+		        
+		        <div class="setting_btn">
+					<input type="submit" value="保存修改" class="btn btn-primary savebtn" />
+				</div>					        	
+	        </div>
+			
+			<!-- 安全设置 -->
+	        <div class="tab-pane" id="t4">
+	        <form action="/member/setting/password/" method="post">
+				<dl class="dl-horizontal ml40">
+					<dt>当前密码：</dt>
+					<dd>
+						<input type="password" class="span3" name="old_password"/>
+					</dd>
+					<dt>新的密码：</dt>
+					<dd>
+						<input type="password" class="span3" name="new_password"/>
+					</dd>
+					<dt>确认密码：</dt>
+					<dd>
+						<input type="password" class="span3" name="re_new_password"/>
+					</dd>
+				</dl>
+				
+				<div class="setting_btn">
+					<input type="submit" value="保存修改" class="btn btn-primary savebtn" />
+				</div>			
+				</form>		        	
+	        </div>
+			
+			<!-- 我的金币 -->
+	        <div class="tab-pane" id="t5">
+				<div class="mymoney">
+					<p class="mymoneyinfo">当前金币：<span>1000</span></p>
+					<input type="button" class="btn btn-success paybtn" value="充 值" /> &nbsp; &nbsp; <input type="button" class="btn btn-success paybtn" value="转 赠" />
+				</div>
+
+				<table class="table mlist">
+				<thead>
+					<tr><th colspan="2">奖励金币的方式</th></tr>
+				</thead>
+				<tbody>
+			        <tr>
+						<td class="c">
+			        		<p>通过个人推广链接推广：</p>
+							<span class="c9">邀请到用户注册 +100 积分，如果该用户充值，充值金币的10%系统赠送给您。同时该用户为您的永久下线，您享受该用户每次充值金币总额10%的系统奖励。</span>
+						</td>
+						<td class="o"><input type="button" class="btn" value="链接推广" /></td>
+			        </tr>
+				</tbody>
+		        </table>
+				
+				<table class="table mlist table-striped">
+				<thead>
+					<tr>
+						<th width="10%">#</th>
+						<th width="15%">时间</th>
+						<th width="15%">数额</th>
+						<th width="15%">余额</th>
+						<th width="*">描述</th>
+					</tr>
+				</thead>
+				<tbody>
+			        <tr>
+						<td>1</td>
+						<td>20分钟前</td>
+						<td>+100</td>
+						<td>1000</td>
+						<td>充值获得</td>							
+			        </tr>
+			        <tr>
+						<td>2</td>
+						<td>1小时前</td>
+						<td>+500</td>
+						<td>900</td>
+						<td>西甲第19轮 巴萨罗那VS皇家马德里 竞猜获胜</td>							
+			        </tr>
+					<tr>
+						<td>3</td>
+						<td>1天前</td>
+						<td>-100</td>
+						<td>400</td>
+						<td>2012/12/09期大盘猜单双竞猜失败</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>3天前</td>
+						<td>+500</td>
+						<td>500</td>
+						<td>好友“午夜好人”赠送</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>5天前</td>
+						<td>-500</td>
+						<td>0</td>
+						<td>金币兑换商品扣除</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>6天前</td>
+						<td>+500</td>
+						<td>500</td>
+						<td>下线“牛人二狗”充值5000，系统赠送您500</td>
+					</tr>
+				</tbody>
+		        </table>	
+		        
+		        <div class="setting_btn">
+					<input type="submit" value="保存修改" class="btn btn-primary savebtn" />
+				</div>										
+	        </div>
+			
+			<!-- 我的积分 -->
+	        <div class="tab-pane" id="t6">
+				<div class="mymoney">
+					<p class="mymoneyinfo">当前积分：<span>1000</span></p>
+				</div>
+
+				<table class="table mlist">
+				<thead>
+					<tr><th colspan="2">奖励积分的方式</th></tr>
+				</thead>
+				<tbody>
+			        <tr>
+						<td class="c">
+			        		<p>通过个人推广链接推广：</p>
+							<span class="c9">邀请到用户注册 +100 积分，如果该用户充值，充值金币的10%系统赠送给您。同时该用户为您的永久下线，您享受该用户每次充值金币总额10%的系统奖励。</span>
+						</td>
+						<td class="o"><input type="button" class="btn" value="链接推广" /></td>
+			        </tr>
+			        <tr>
+						<td class="c">
+			        		<p>通过分享竞猜题目：</p>
+							<span class="c9">将您好友的竞猜，参与的竞猜分享到新浪微博、腾讯微博，每条可获得 50 积分的奖励</span>
+						</td>
+						<td class="o"><input type="button" class="btn" value="分享竞猜" /></td>
+			        </tr>					
+				</tbody>
+		        </table>
+				
+				<table class="table mlist table-striped">
+				<thead>
+					<tr>
+						<th width="10%">#</th>
+						<th width="15%">时间</th>
+						<th width="15%">数额</th>
+						<th width="15%">余额</th>
+						<th width="*">描述</th>
+					</tr>
+				</thead>
+				<tbody>
+			        <tr>
+						<td>1</td>
+						<td>20分钟前</td>
+						<td>+100</td>
+						<td>1000</td>
+						<td>分享 西甲第19轮 巴萨罗那VS皇家马德里竞猜 到新浪微博</td>							
+			        </tr>
+			        <tr>
+						<td>2</td>
+						<td>1小时前</td>
+						<td>+500</td>
+						<td>900</td>
+						<td>通过个人推广链接推广 邀请到“疯子王三”注册</td>							
+			        </tr>
+					<tr>
+						<td>3</td>
+						<td>1天前</td>
+						<td>-100</td>
+						<td>400</td>
+						<td>绑定新浪微博帐号</td>
+					</tr>
+				</tbody>
+		        </table>
+		        
+		        <div class="setting_btn">
+					<input type="submit" value="保存修改" class="btn btn-primary savebtn" />
+				</div>			        	
+	        </div>
+			
+			<!-- 申请认证 -->
+	        <div class="tab-pane" id="t7">
+				<dl class="dl-horizontal ml40">
+					<dt>标题：</dt>
+					<dd>
+						<input type="text" class="span3" />
+					</dd>
+					<dt>内容：</dt>
+					<dd>
+						<input type="text" class="span5" />
+					</dd>
+					<dd>
+						<input type="button" class="btn verifybtn" value="提交"/>
+					</dd>
+					
+				</dl>
+				
+				<div class="setting_btn">
+					<input type="submit" value="保存修改" class="btn btn-primary savebtn" />
+				</div>	
+	        </div>						
+			
+			
+        </div>
+         
+		<script type="text/javascript">
+			$('#setting_tab a').click(function (e) {
+				e.preventDefault();
+				$(this).tab('show');
+			})
+			$(function () {
+				$('#setting_tab a[href="#t1"]').tab('show');
+			})
+			$(document).ready(function(){
+			    bindAvatarUpload();
+			});
+		</script>
+				
+	</div>
+{gtpl footer}

@@ -1,0 +1,25 @@
+{gtpl message_header}
+<div class="container reg_body">
+		<div class="container" style="background-color: white; padding: 50px 0px; width: 925px; text-align: center; font-size: 14px;">
+			{$message}
+			
+			{if $autoUrl}
+			<br /><br /><span style="font-size: 12px; color: #666;">{$time}秒后跳转... 请稍候!</span>
+			{/if}
+			
+            {loop $links $link}
+            <p><a href="{$link[1]}">{$link[0]}</a></p>
+            {/loop}
+		</div>
+		
+	</div>
+	{if $autoUrl}
+	<script type="text/javascript" language="javascript">
+	    var redirect = "{$autoUrl}";
+	    var jump = {$jump};
+	    var waittime = {$time};
+	    jQuery("#jump_status").css({"float":"right", "margin-right":"20px"}).text("正在转跳...");
+	    setTimeout(function(){window.location.href = redirect}, waittime*1000);
+	</script>
+	{/if}
+{gtpl message_footer}

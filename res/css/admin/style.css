@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+/* 2012-0321 淘宝*/
+.taobao_table{ clear:both; border:1px solid #ddd; border-collapse:collapse; width:auto; border:1px solid #d6d6d6;}
+.taobao_table td{ padding:5px; line-height:20px;border:1px solid #d6d6d6;}
+.taobao_table .d1{ width:130px;}
+.taobao_table .d2{ width:100px;}
+.taobao_table .d3{ padding:0 5px; color:#888;}
+.taobao_table .bg7{ padding:5px;width:110px; height:140px; background:url(/res/images/admin/bg1.gif) no-repeat left top;}
+.taobao_table .bg1{ border:1px solid #e1c6bb; background:url(/res/images/admin/icon1.gif) no-repeat left top; width:96px; height:96px; overflow:hidden;}
+.taobao_table .bg2{ border:1px solid #ddd;background:url(/res/images/admin/icon2.gif) no-repeat left top; width:96px; height:96px; overflow:hidden;}
+.taobao_table .bg3{border:1px solid #ddd;background:url(/res/images/admin/icon3.gif) no-repeat left top; width:96px; height:96px; overflow:hidden;}
+.taobao_table .bg4{border:1px solid #ddd;background:url(/res/images/admin/icon4.gif) no-repeat left top; width:96px; height:96px; overflow:hidden;}
+.taobao_table .bg5{border:1px solid #ddd;background:url(/res/images/admin/icon5.gif) no-repeat left top; width:96px; height:96px; overflow:hidden;}
+.taobao_table .btn{background:url(/res/images/admin/icon6.gif) no-repeat left top; width:99px; height:27px; overflow:hidden; border:none; cursor:pointer; margin-top:5px;}
+.taobao_table span{ color:#ff0000;}
+.taobao_table .bg1,.taobao_table .bg2,.taobao_table .bg3,.taobao_table .bg4,.taobao_table .bg5{ position:relative;}
+
+.taobao_table .bg_none{background:none;}
+
+.taobao_table .doing{ position:absolute; left:0; bottom:0px; z-index:2; width:100%; height:25px; overflow:hidden;}
+.taobao_table .doing b{ position:absolute; z-index:1; left:0; top:0; width:100%; height:25px; overflow:hidden;opacity:0.5;background-color:rgba(0,0,0,0.5); background:#000; filter:alpha(opacity=50);}
+.taobao_table .doing a.prev,.taobao_table .doing a.next,.taobao_table .doing a.del{line-height:100px;overflow:hidden; z-index:2; position:absolute; display:block; top:8px;}
+.taobao_table .doing a.prev{width:13px; height:12px;background:url(/res/images/admin/goback.gif) no-repeat left top; left:20px;}
+.taobao_table .doing a.next{width:13px; height:12px;background:url(/res/images/admin/goto.gif) no-repeat left top;left:42px;display:block; top:7px;}
+.taobao_table .doing a.del{width:14px; height:14px;background:url(/res/images/admin/error.gif) no-repeat left top;left:65px; top:6px;}
+
+.taobao_table .pic{width: 96px; height:96px; display: table-cell; *display: block; *font-size: 84px; *font-family:Arial; text-align: center; vertical-align: middle;}
+.taobao_table .pic img{ max-width:96px; max-height:96px; vertical-align: middle; zoom: expression( function(elm) { if (elm.width > 96 || elm.height > 96 ){ if (elm.width>elm.height) { elm.width=96; } else{ elm.height=96; } } }(this) ); }
+
+.button-container input{ cursor:pointer; width:auto; padding:0 15px; height:20px; line-height:20px; color:#fff; overflow:hidden; border:1px solid #168baa; background:url(/res/images/admin/line8.gif) repeat-x left top;}
+
+.KK_ManageList_tjlist li em{ font-weight:bold; color:#c30000; padding:0 8px; cursor: pointer;}
+
+.KK_content_list2_table table .cot .txt{margin:0;}
+.KK_content_list2_table table td{padding:5px;}
+
+.KK_ManageSear .s1 img{ padding-top:15px;}
+
+.KK_ManageSear .s2{ padding-top:18px;}
+.KK_Manage_loginTips{ position:absolute; width:503px; left:50%; margin-left:-251px; height:42px; overflow:hidden; background:url(/res/images/admin/ListBg.png) no-repeat left -107px;_behavior:url(iepngfix.htc);}

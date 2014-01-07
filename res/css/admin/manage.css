@@ -1,0 +1,297 @@
+@charset "utf-8";
+/* [ Imports ] 导入外部样式库
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+@import url("common.css"); /*公共通用样式*/
+
+/* 头尾 */
+.body_KK_Manage{ background:url(/res/images/admin/blackground/bg-pattern-1.png) repeat left top !important;}
+.body_KK_Manage1{ background:url(/res/images/admin/blackground/bg-pattern-1.png) repeat left top !important;}
+.body_KK_Manage2{ background:url(/res/images/admin/blackground/bg-pattern-2.png) repeat left top !important;}
+.body_KK_Manage3{ background:url(/res/images/admin/blackground/bg-pattern-3.png) repeat left top !important;}
+.body_KK_Manage4{ background:url(/res/images/admin/blackground/bg-pattern-4.png) repeat left top !important;}
+.body_KK_Manage5{ background:url(/res/images/admin/blackground/bg-pattern-5.png) repeat left top !important;}
+.body_KK_Manage6{ background:url(/res/images/admin/blackground/bg-pattern-6.png) repeat left top !important;}
+.body_KK_Manage7{ background:url(/res/images/admin/blackground/bg-pattern-7.png) repeat left top !important;}
+.body_KK_Manage8{ background:url(/res/images/admin/blackground/bg-pattern-8.png) repeat left top !important;}
+.KK_loading .inner {background: url("/res/images/admin/ellipse.png") no-repeat center center;}
+.KK_loading {position: fixed; display: block; color: #fff; width: 100%; height: 100%; top: 0; left: 0; font-weight: bold; text-align: center; z-index: 999999999;}
+.KK_loading .inner {height: 100%;}
+.KK_loading .inner > div { position: absolute; top: 50%; left: 50%; margin-top: -105px; margin-left: -110px;}
+.KK_loading .inner > div .ajax-loader { margin: 0 auto;}
+.KK_loading .ajax-loader { background: transparent url("/res/images/admin/ajax-loader.gif") no-repeat; width: 220px; height: 20px;}
+.KK_ManageNav{ clear:both; width:100%; height:54px; background:#000;}
+.KK_ManageNav_link{ width:auto; padding-left:30px; line-height:54px; color:#ccc;}
+.KK_ManageNav_link a{ color:#ccc; padding:0 5px;}
+.KK_ManageNav_logo{ width:auto; padding:8px 30px 0 0;}
+.KK_ManageTop{ width:100%; clear:both; background: url(/res/images/admin/header.gif) repeat-x left top; height:66px;}
+.KK_ManageTop .wrapper960{clear:both; background: url(/res/images/admin/header.gif) repeat-x left top; height:66px;}
+.KK_ManageMenu{ width:auto; margin-left:40px;}
+.KK_ManageMenu .u1{ width:auto; height:64px; float:left; display:inline; overflow:hidden; padding-top:2px;}
+.KK_ManageMenu .u1 li{ width:85px; height:64px; overflow:hidden; float:left; display:inline;}
+.KK_ManageMenu .u1 li a{ float:left; display:inline; width:85px; height:64px; overflow:hidden; background:url(/res/images/admin/manage.png) no-repeat 0 0; text-align:center; color:#fff; line-height:95px;}
+.KK_ManageMenu .u1 li a:hover,.KK_ManageMenu .u1 li a.hover{ background-position:0 -65px;}
+.KK_ManageMenu .u1 li.ico_1 a{background:url(/res/images/admin/icon/li_bg.png) no-repeat 25px 5px;}
+.KK_ManageMenu .u1 li.ico_2 a{background:url(/res/images/admin/icon/li_bg6.png) no-repeat 25px 5px;}
+.KK_ManageMenu .u1 li.ico_3 a{background:url(/res/images/admin/icon/li_bg2.png) no-repeat 25px 5px;}
+.KK_ManageMenu .u1 li.ico_4 a{background:url(/res/images/admin/icon/li_bg3.png) no-repeat 25px 5px;}
+.KK_ManageMenu .u1 li.ico_5 a{background:url(/res/images/admin/icon/li_bg4.png) no-repeat 25px 5px;}
+.KK_ManageMenu .u1 li.ico_6 a{background:url(/res/images/admin/icon/li_bg1.png) no-repeat 25px 5px;}
+.KK_ManageMenu .u1 li.ico_7 a{background:url(/res/images/admin/icon/li_bg5.png) no-repeat 25px 5px;}
+.KK_ManageMenu .u1 li.ico_1 a:hover{}
+.KK_ManageMenu .u1 li.ico_2 a:hover{}
+.KK_ManageMenu .u1 li.ico_3 a:hover{}
+.KK_ManageMenu .u1 li.ico_4 a:hover{}
+.KK_ManageMenu .u1 li.ico_5 a:hover{}
+.KK_ManageMenu .u1 li.ico_6 a:hover{}
+.KK_ManageMenu .u1 li.ico_7 a:hover{}
+.KK_ManageSear{ width:auto;}
+.KK_ManageSear span{ float:right; display:inline;}
+.KK_ManageSear .s1 img{ padding-top:29px; padding-right:30px; cursor:pointer;}
+.KK_ManageSear .s2{ padding-top:32px; color:#ccc; height:20px; line-height:20px; overflow:hidden;}
+.KK_ManageSear .s2 a{ color:#ccc; padding:0 10px;}
+
+.KK_ManageList_position{ clear:both; width:100%; height:20px; line-height:20px; padding-bottom:10px; background:url(/res/images/admin/icon/icon7.gif) no-repeat left 2px; text-indent:15px;}
+.KK_ManageList_position a{ color:#666; padding:0 8px;}
+.KK_ManageList_position a:hover{ color:#999;}
+
+/* 换背景 */
+*html{background-image:url(about:blank); background-attachment:fixed;}  
+.KK_ManageBgChange_box{position:fixed; top:0px; left:0px; margin-top:200px; _position:absolute; _bottom:auto;_top:expression(eval(document.documentElement.scrollTop)); width:15px; padding:10px 5px 6px 0; z-index:1000; border:1px solid #cccccc; border-left:none; background:#000;}
+.KK_ManageBgChange_list{ width:100%;}
+.KK_ManageBgChange_list li{ width:15px; height:15px; overflow:hidden; cursor:pointer; background:#09a7e0; margin-bottom:4px;}
+.KK_ManageBgChange_list li.ico_1{background:url(/res/images/admin/blackground/bg-pattern-1.png) repeat left top;}
+.KK_ManageBgChange_list li.ico_2{background:url(/res/images/admin/blackground/bg-pattern-2.png) repeat left top;}
+.KK_ManageBgChange_list li.ico_3{background:url(/res/images/admin/blackground/bg-pattern-3.png) repeat left top;}
+.KK_ManageBgChange_list li.ico_4{background:url(/res/images/admin/blackground/bg-pattern-4.png) repeat left top;}
+.KK_ManageBgChange_list li.ico_5{background:url(/res/images/admin/blackground/bg-pattern-5.png) repeat left top;}
+.KK_ManageBgChange_list li.ico_6{background:url(/res/images/admin/blackground/bg-pattern-6.png) repeat left top;}
+.KK_ManageBgChange_list li.ico_7{background:url(/res/images/admin/blackground/bg-pattern-7.png) repeat left top;}
+.KK_ManageBgChange_list li.ico_8{background:url(/res/images/admin/blackground/bg-pattern-8.png) repeat left top;}
+
+/* index */
+.KK_ManageIndex_mainbox{ clear:both; width:100%; min-height:900px; height:auto; overflow:visible; _height:900px; background:url(/res/images/admin/shadow.png) no-repeat center 0;_behavior:url(iepngfix.htc);}
+.KK_ManageIndex_mainbox_inner{ width:400px; margin:0 auto; padding-top:160px;}
+.KK_ManageIndex_logo{ clear:both; text-align:center; padding-bottom:55px;}
+.KK_ManageIndex_logo img{_behavior:url(iepngfix.htc);}
+.KK_ManageIndex_nav{ clear:both; width:100%;}
+.KK_ManageIndex_list{clear:both; width:100%;position:relative;}
+.KK_ManageIndex_list li{  position: absolute;float:left; display:inline; width:122px; height:85px; overflow:hidden; cursor:pointer; margin:4px;} 
+.KK_ManageIndex_list li a{float:left; display:inline; width:122px; height:85px; overflow:hidden; cursor:pointer;}
+.KK_ManageIndex_list li a.hover,.KK_ManageIndex_list li a:hover{ background:url(/res/images/admin/li_bg2.png) no-repeat left top;_behavior:url(iepngfix.htc);}
+.KK_ManageIndex_list li .pic{ width:110px; margin:0 auto; text-align:center; padding:14px 0;}
+.KK_ManageIndex_list li .pic img{_behavior:url(iepngfix.htc);}
+.KK_ManageIndex_list li .btn{ width:110px; height:21px; overflow:hidden; margin:0 auto; background:url(/res/images/admin/btn2.gif) no-repeat left top; line-height:21px; text-align: center; color:#767676;}
+
+/* login */
+.KK_Manage_loginTips{ position:relative; width:503px; height:42px; overflow:hidden; margin:0 auto; background:url(/res/images/admin/ListBg.png) no-repeat left -107px;_behavior:url(iepngfix.htc);}
+.KK_Manage_loginTips .close{ display:block; width:8px; height:7px; overflow:hidden; position:absolute; right:20px; top:14px; background:url(/res/images/admin/icon/icon6.gif) no-repeat left top; line-height:100px; cursor:pointer;}
+.KK_Manage_loginTips_txt{ padding:8px 30px 5px 20px; clear:both; line-height:18px; color:#666;}
+.KK_Manage_login_top{ width:308px; height:10px; overflow:hidden; background:url(/res/images/admin/login.png) no-repeat left top;_behavior:url(iepngfix.htc); margin:0 auto;}
+.KK_Manage_login_bot{ width:308px; height:18px; overflow:hidden; background:url(/res/images/admin/login.png) no-repeat left -218px;_behavior:url(iepngfix.htc); margin:0 auto;}
+.KK_Manage_login{ width:308px; overflow:hidden; background:url(/res/images/admin/line3.png) repeat-y left top;_behavior:url(iepngfix.htc); margin:0 auto;}
+.KK_Manage_loginInner{width:272px; padding:10px 0 0 16px;}
+.KK_Manage_login .tit{ width:272px; height:36px; overflow:hidden; background:url(/res/images/admin/login.png) no-repeat left -262px; position:relative;}
+.KK_Manage_login .chec{ width:14px; height:14px; overflow:hidden; position:absolute; right:84px; top:10px;}
+.KK_Manage_login .txt1,.KK_Manage_login .txt2{ width:233px; height:16px; padding:10px 10px 11px 30px; overflow:hidden; background:url(/res/images/admin/login.png) no-repeat 0 0; border:none; color:#666666;margin-top:13px;}
+.KK_Manage_login .txt1{ background-position:0 -299px;}
+.KK_Manage_login .txt2{ background-position:0 -337px;}
+.KK_Manage_login dl{ clear:both; padding-top:13px; line-height:18px; color:#555;}
+.KK_Manage_login .pic{ padding-left:5px;}
+.KK_Manage_login .txt3{ width:60px; height:14px; padding:2px 5px; border:1px solid #ccc; background:#fff;}
+.KK_Manage_login .btn{margin-top:13px; width:270px; height:39px; overflow:hidden; cursor:pointer; background:url(/res/images/admin/login.png) no-repeat 0 -375px; border:none;}
+.KK_Manage_login .line{ display:block; clear:both; width:100%; height:2px; overflow:hidden; font-size:0px; background:url(/res/images/admin/line1.gif) repeat-x left top; margin-top:13px;}
+
+/* 列表 */
+.KK_ManageList_content{ width:1132px; margin:0 auto; padding-top:18px; padding-bottom:50px;}
+.KK_ManageList_l_side{ width:146px;}
+.KK_ManageList_mainRt_side{ width:986px;}
+
+.KK_ManageList_menu{ clear:both; width:100%; padding-top:35px;}
+.KK_ManageList_menu_top,.KK_ManageList_menu_bot,.KK_ManageList_mainbox_top,.KK_ManageList_mainbox_bot{ clear:both; width:100%; overflow:hidden; background:url(/res/images/admin/ListBg.png) no-repeat 0 0;_behavior:url(iepngfix.htc);}
+.KK_ManageList_menu_top{height:40px; background-position: 0 0;}
+.KK_ManageList_menu_bot{height:25px;background-position: 0 -41px;}
+.KK_ManageList_menu_con{ clear:both; width:100%; background:url(/res/images/admin/line3.gif) repeat-y left top;padding-bottom:10px;}
+.KK_ManageList_menu_top h2{ float:left; display: inline; font-size:12px; font-weight:bold; color:#ededed; width:auto; padding:9px 25px 0 45px; background: url(/res/images/admin/icon/icon5.gif) no-repeat right 15px;}
+.KK_ManageList_menu_list{ padding-left:6px; clear:both;}
+.KK_ManageList_menu_list li{ clear:both; width:100%;}
+.KK_ManageList_menu_list li .tit{ clear:both; width:100%; height:25px; background:#1782cc url(/res/images/admin/icon/icon1.gif) no-repeat 15px 8px; line-height:25px; overflow:hidden; text-indent:30px; font-weight:bold; color:#fff;} 
+.KK_ManageList_menu_list li .submenu{clear:both; width:100%; padding:5px 0;}
+.KK_ManageList_menu_list li .submenu dd{clear:both; width:100%; height:25px;line-height:25px; overflow:hidden; text-indent:40px;}
+.KK_ManageList_menu_list li .submenu a{ color:#fff;}
+.KK_ManageList_menu_list li .submenu a:hover{}
+
+.KK_ManageList_mainbox_top{ height:12px;background-position: 0 -72px;}
+.KK_ManageList_mainbox_bot{ height:14px;background-position: 0 -85px;}
+.KK_ManageList_mainbox{clear:both; width:100%; background:url(/res/images/admin/line2.png) repeat-y left top;_behavior:url(iepngfix.htc);min-height:550px; height:auto; overflow:visible; _height:550px; padding-bottom:50px; }
+.KK_ManageList_mainbox_inner{ padding:0 18px 0 12px; clear:both; zoom:1;}
+.KK_ManageList_mainbox_inner h3{padding:10px 0px; width:100%; font-size:12px;}
+.KK_ManageList_mainbox_inner h3 a{padding-bottom:5px;}
+
+.KK_ManageLisst_table{ clear:both; width:100%;}
+.KK_ManageLisst_table table{ clear:both; width:100%; border:none; border-collapse:collapse;}
+.KK_ManageLisst_table table th{border:1px solid #ddd; height:26px; padding:1px 1px 1 1px; background:#fff url(/res/images/admin/line4.gif) repeat-x left top;}
+.KK_ManageLisst_table table td{ border-bottom:1px solid #ddd; padding:6px; color:#333; line-height:18px;}
+.KK_ManageLisst_table table .thbg td{ background:#f7f6f6;}
+.KK_ManageLisst_table table .num{ width:105px; overflow:hidden; white-space:normal;word-wrap: break-word;}
+.KK_ManageLisst_table table .yuan{ color:#cf0000; font-weight:bold;}
+.KK_ManageLisst_table table img{ margin:0 5px;}
+
+.KK_ManageList_page{ width:auto; margin-right:25px; height:30px; padding-right:10px; background:url(/res/images/admin/page.gif) no-repeat right top;}
+.KK_ManageList_page_inner{width:auto;float:left; display:inline; height:30px; padding-left:10px; background:url(/res/images/admin/page.gif) no-repeat left top;}
+.KK_ManageList_page_ul{ clear:both; width:auto; float:left; overflow:hidden; zoom:1;}
+.KK_ManageList_page_ul a{ float:left; display:inline; width:auto; color:#fff; line-height:30px;padding:0 10px; height:30px; overflow:hidden; background: url(/res/images/admin/line6.gif) no-repeat right top; margin-right:-2px; font-size:12px;}
+.KK_ManageList_page_ul a:hover,.KK_ManageList_page_ul a.hover{ background:#4ca4e0 url(/res/images/admin/line6.gif) no-repeat right top;}
+
+.KK_ManageList_mainbox_inner2{padding:5px 26px 0 20px; clear:both; zoom:1}
+.KK_ManageList_tit2{ clear:both; width:100%; height:35px; line-height:35px; overflow:hidden; background:url(/res/images/admin/line1.gif) repeat-x left bottom;}
+.KK_ManageList_tit2 h2{ font-size:14px; font-weight:bold; text-indent:25px; width:auto; color:#000;}
+.KK_ManageList_tjbox{ clear:both; padding:20px 25px; zoom:1;}
+.KK_ManageList_tjbox_small{ width:200px; height:227px; overflow:hidden; border:1px solid #bbcdd9; margin:0 10px; background:#fff;}
+.KK_ManageList_tjbox_small h2{ clear:both; width:100%; height:27px; line-height:27px; border-bottom:1px solid #bbcdd9;text-indent:15px; background:url(/res/images/admin/line7.gif) repeat-x left top; font-size:12px; font-weight:bold;}
+.KK_ManageList_tjlist{clear:both; width:100%;}
+.KK_ManageList_tjlist li{ color:#333; clear:both; width:100%; height:24px; overflow:hidden; border-bottom:1px solid #bbcdd9; line-height:24px; text-indent:15px;}
+.KK_ManageList_tjlist li a{ color:#333;}
+.KK_ManageList_tjlist li em{ font-weight:bold; color:#c30000; padding:0 8px;}
+.KK_ManageList_7day{ clear:both; padding:30px;}
+.KK_ManageList_7day h2{font-size:14px; font-weight:bold;width:auto; color:#333;}
+.KK_ManageList_7dayimgbox{border:1px solid #bbcdd9; background:#eaf1f5; margin-top:8px; padding:8px; text-align: center;}
+
+/* content_列表2 */
+.KK_content_list2_tab{width:100%; overflow:hidden;}
+.KK_content_list2_tab .tab{width:100%; overflow:hidden; height:24px; background:url(/res/images/admin/icon/yu_icon01.gif) repeat-x left bottom;}
+.KK_content_list2_tab .tab li{float:left; display:inline; margin-left:5px; height:22px; line-height:22px; padding:0 15px; border:1px solid #ddd; background-color:#f3f4f4; border-bottom:none; color:#666;}
+.KK_content_list2_tab .tab li:hover{background-color:#fff; border:1px solid #b9b9b9; border-bottom:none; cursor:pointer;margin-bottom:-1px; color:#eb9100; height:23px; line-height:23px;}
+.KK_content_list2_tab .tab li.hover{background-color:#fff; border:1px solid #b9b9b9; border-bottom:none; cursor:pointer; margin-bottom:-1px;color:#eb9100;height:23px; line-height:23px;}
+.KK_content_list2_con{background-color:#f9f9f9; border:1px solid #dedede;}
+.KK_content_list2_table{ clear:both; width:100%;}
+.KK_content_list2_table table{ clear:both; width:100%; border:none; border-collapse:collapse;}
+.KK_content_list2_table table td{padding:10px;}
+.KK_content_list2_table table .name{text-align:right; color:#333;}
+.KK_content_list2_table table .cot{background-color:#fff;}
+.KK_content_list2_table table .cot:hover{background-color:#f9f9f9;}
+.KK_content_list2_table table .cot .txt{width:254px; height:18px; overflow:hidden; padding:2px 3px; margin:10px 0; border:1px solid #d6d6d6; line-height:18px;}
+.KK_content_list2_table table .cot .btn{color:#FFF;background:url(/res/images/admin/yu_btn01.gif) no-repeat left top; width:76px; height:28px; overflow:hidden; border:none; cursor:pointer; margin-left:10px;}
+.KK_content_list2_table table .cot .u1{border:1px solid #cdcdcd; overflow-y:scroll; width:155px;height:184px;}
+.KK_content_list2_table table .cot .u1 li{line-height:23px; color:#837779;}
+.KK_content_list2_table table .cot .chk,.KK_content_list2_table table .cot .rad{vertical-align:-2px; margin:0 5px 0 10px;}
+.KK_content_list2_table .small_table{width:514px;}
+.KK_content_list2_table .small_table td{width:107px; color:#6f6f6f; border:1px solid #e1e1e1;}
+.KK_content_list2_table .small_table td .txt02{width:90px; height:16px; padding:3px 5px; color:#25181f; overflow:hidden; border:1px solid #d6d6d6;}
+.KK_content_list2_table table .cot .add_btn{background:url(/res/images/admin/yu_btn02.gif) no-repeat left top; width:73px; height:22px; overflow:hidden; display:block; line-height:22px; text-indent:20px; color:#7a787b; margin-right:8px;} 
+.KK_ManageList_btn_add{ display: inline-block; width:auto; padding:0 15px; height:20px; line-height:20px; color:#fff; overflow:hidden; border:1px solid #168baa; background:url(/res/images/admin/line8.gif) repeat-x left top;}
+
+
+.list_table {width:100%; margin:10px 0; _width:98%; overflow-x:scroll; _margin-right:-20px ;font-size:12px}
+.form-table td { padding:8px 10px; }
+.list_table td { padding:6px; text-align:left;}
+.list_table th { padding:5px 6px 2px;text-align:left;}
+.list_table tbody td { border-bottom:1px #e7e7e7 dashed; }
+.list_table tbody td span {overflow: hidden;display: block;}
+.list_table tbody td.limit { overflow:hidden; }
+.list_table tbody td.limit span { display:block; width:100%; white-space:nowrap; overflow:hidden; }
+
+.cywz_a1 {
+    clear: both;
+    height: 38px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.cywz_a1 .u2 {
+    background: url("/res/images/sear_bg.gif") no-repeat scroll left top transparent;
+    display: inline;
+    float: right;
+    height: 28px;
+    margin: 5px 30px 0 0;
+    overflow: hidden;
+    width: 179px;
+}
+.cywz_a1 .u2 .txt {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #686868;
+    display: inline;
+    float: left;
+    font-size: 12px;
+    height: 18px;
+    margin: 5px 0 0 5px;
+    overflow: hidden;
+    width: 150px;
+}
+.cywz_a1 .u2 .btn {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 25px;
+    overflow: hidden;
+    width: 22px;
+}
+
+.thead{
+	border-bottom: 1px solid #DDDDDD;
+}
+.thead tr{
+	padding-bottom:5px;
+	margin-bottom:5px;
+}
+.ops{
+	text-align:center;
+}
+.button_ok{
+	width:47px;
+	height:25px;
+	background:url(/res/images/ok.gif) no-repeat;border:0px
+}
+
+.employes_ul{
+	margin-top:10px;
+	margin-left:15px;
+	margin-bottom:10px;
+	height:300px;
+	width:655px;
+	overflow:auto;
+}
+
+.employes_ul li{
+	width:155px;
+	float:left;
+	height:25px;
+	line-height:25px;
+}
+
+.answer_ul{
+	margin-top:10px;
+	width:600px;
+}
+
+.answer_ul li{
+	border: 1px solid #CCC;
+	margin-top:10px;
+	padding:10px 10px 10px 10px;
+}
+
+.answer_ul li .title .info{
+	float:left;
+}
+.answer_ul li .title .ops{
+	float:right;
+}
+.answer_ul li .content{
+	margin-top:10px;
+	margin-left:28px;
+}
+
+.must{
+	color:red;
+}
+
+a.popup{
+	margin-left:5px;
+}
+
+a.info{
+	padding-left:10px;
+	background:url(/res/images/i.jpg) no-repeat scroll 0 0px transparent;;
+}

@@ -1,0 +1,80 @@
+{gtpl header}
+	<div class="goods_body">
+		<div class="alink">当前位置：<a href="/">首页</a> > <a href="/goods/list/">兑换/抽奖</a> > {$item['title']}</div>
+		<div class="goods_info">
+			<div class="pimg"><img src="{$item['image']}" alt="{$item['title']}" title="{$item['title']}"/></div>
+			<div class="ptxt">
+				<p class="n">{$item['title']}</p>
+				<p class="t">
+				状态：<span>{if $item['status']}上架{else}已下架{/if}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+				库存：<span>{$item['count']}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+				{if $item['can_exchange']}兑换金币：<span>{$item['money']}</span>&nbsp;&nbsp;&nbsp;&nbsp;{/if}
+				{if $item['can_lottery']}抽奖次数：<span>{if $item['lottery_count']}{$item['lottery_count']}{else}不限{/if}</span>&nbsp;&nbsp;&nbsp;&nbsp;{/if}
+				</p>
+				{if $item['status'] && $item['count'] > 0 }
+					{if $item['can_exchange']}
+					<a href="/goods/exchange/?id={$item['id']}" class="btn btn-primary mybtn" id="goods_exchange" onclick="ajaxmenu(event, this.id, 1)">兑换</a>&nbsp;&nbsp;
+					{/if}
+					{if $item['can_lottery']}
+					<a href="/goods/lottery/?id={$item['id']}" class="btn btn-primary mybtn" id="goods_lottery" onclick="ajaxmenu(event, this.id, 1)">抽奖</a>
+					{/if}
+				{/if}
+				<p class="i">
+					奖品说明：<br />
+					{$item['summary']}
+				</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		<!-- addr -->
+		<div id="addrModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addrModalLabel" aria-hidden="true">
+			
+			<form class="form-horizontal" action="#" method="post">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="addrModalLabel">寄送地址</h3>
+				</div>
+				
+				<div class="modal-body">
+
+			    <div class="control-group">
+				    <label class="control-label" for="addr">收件地址：</label>
+				    <div class="controls">
+						<input type="text" id="addr" class="span4" />
+				    </div>
+			    </div>
+				
+			    <div class="control-group">
+				    <label class="control-label" for="truename">收件人：</label>
+				    <div class="controls">
+				    	<input type="text" id="truename" class="span3">
+				    </div>
+			    </div>
+				
+			    <div class="control-group">
+				    <label class="control-label" for="zip">邮编：</label>
+				    <div class="controls">
+				    	<input type="text" id="zip" class="span3">
+				    </div>
+			    </div>
+				
+			    <div class="control-group">
+				    <label class="control-label" for="tel">联系电话：</label>
+				    <div class="controls">
+				    	<input type="text" id="zip" class="tel">
+				    </div>
+			    </div>										
+				
+			    <div class="control-group" style="margin-bottom: 0px;">
+				    <div class="controls">
+						<input type="submit" class="btn btn-primary submit" value="提交" />
+				    </div>
+			    </div>
+				
+				</div>					
+					
+			</form>
+		</div>
+	</div>
+{gtpl footer}

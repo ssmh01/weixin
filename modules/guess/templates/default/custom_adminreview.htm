@@ -1,0 +1,136 @@
+{gtpl header}
+{res:js jquery/jquery.scrollTo.min.js}
+{res:js play.js}
+	<div class="read_body">
+		<div class="left">
+			<div class="alink">当前位置：<a href="/">首页</a> > <a href="/guess/list/">竞猜</a> > 
+			{if $rootCategory}
+			<a href="{url /guess/list/?cateid=$rootCategory[id]}">{$rootCategory[name]}</a> > {$subCategory[name]}
+			{else}
+			自定义
+			{/if}
+			</div>
+			<div class="content">
+				<div class="title">
+					{$guess->getTitle()}					
+				</div>
+				<div class="t">
+					<div class="t1">竞猜时间：{date $guess->getPlayStartTime() Y年m月d日 H：i} — {date $guess->getPlayDeadline() Y年m月d日 H：i} </div>
+				</div>
+				<div class="t">
+					<div class="t1">下注形式：{$guess->getCustomType()} </div>					
+				</div>
+				<div class="t" >
+					<div style="float:right;width: 530px;line-height:40px;">{$guess->getSummary()}</div>
+					<div style="float:left;width: 60px;line-height:40px;">竞猜说明：</div>
+				</div>
+				<div class="clear"></div>
+				<div id="play_lists"></div>
+				<div class="playtype">自定义玩法(<a target="_blank" href="{url /news/list/}">查看说明</a>)</div>
+				<div class="h">
+					<div class="w1">竞猜结果</div>
+					<div class="w2" style="text-align:center;">投注人数</div>
+					<div class="w2" style="text-align:center;">我的投注</div>
+				</div>
+				{run $parameter = $guess->getParameter();}
+				{run if($play)$playData = $play->getFirstPlayData();}
+				{loop $parameter->getOptions() $option}
+				<div class="d">
+					<div class="w1">{$option->getLabel()}</div>
+					<div class="w2" style="text-align:center;">{if $play}{$option->getPlayCount()}{else}参与后显示{/if}</div>
+					<div class="w2" style="text-align:center;">不能投注</div>
+				</div>
+				{/loop}
+				<div class="d tc">
+					当前参与人数：<b>{$guess->getPlayCount()}</b>人
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<div class="right">
+			<div class="ulist zz">
+				<div class="content">	
+					{run $makers = $guess->getUser();}
+					<div class="userinfo">
+						<img src="{$makers->getAvatar()}" />
+						<span class="username">发布庄家: <a href="{url /member/space/?uid=\[$makers->getId()\]}">{$makers->getName()}</a></span>
+						<span class="address">
+						{if !$makers->getProvince() && !$makers->getCity()}
+							地址不详
+						{else}
+							{$makers->getProvince()}{$makers->getCity()}
+						{/if}
+						</span>
+						<span class="sign">{$makers->getSign()}</span>
+					</div>
+					
+					<div class="guessinfo">	
+					
+						<ul>
+							<li class="i1">
+								{if $guess->getStatus() == Guess::STATUS_WAITING_RUDGE}
+									<span class="bg-red">判定中</span>
+								{elseif $guess->getStatus() == Guess::STATUS_END}
+									<span class="bg-red">已结束</span>
+								{elseif $guess->getStatus() == Guess::STATUS_CLOSE}
+									<span class="bg-red">已关闭</span>
+								{elseif $guess->getStatus() == Guess::STATUS_WAITING_CKECK}
+									<span class="bg-red">审核中</span>
+								{elseif $guess->getPlayDeadline() < time()}
+									<span class="bg-red">已截止</span>
+								{else}
+									<span class="bg-green">投注中</span>
+								{/if}
+								投注状态
+							</li>
+							<li class="i2">
+								<span>
+								{if $guess->getPlayDeadline() < time()}
+									-
+								{else}
+									{if $guessDay}{$guessDay}天{/if}{$guessHour}小时{$guessMinute}分钟
+								{/if}
+								</span>								
+								距离结束
+							</li>
+							<li class="i3">
+								<span>{$guess->getplayCount()}人</span>
+								参与人数
+							</li>
+							<li class="i4">
+								<span>-</span>
+								投注总额
+							</li>
+						</ul>
+					
+					</div>
+					
+					
+					<div class="bottom">
+						<a href="/member/friend/add/?uid={$makers->getId()}" cancel="0" class="btn btn-primary" onclick="ajaxmenu(event, this.id, 1, 2000)" id="follow_add_{$makers->getId()}" class="btn btn-primary">加好友</a> &nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="/member/message/send/?uid={$makers->getId()}" id="message_send_{$makers->getId()}" onclick="ajaxmenu(event, this.id, 1)" class="btn btn-primary">站内信</a>
+					</div>
+				</div>
+			</div>		
+			
+			<div class="ulist">
+				<div class="title">最新竞猜用户</div>
+					{gtpl users_list_box}
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+	<script type="text/javascript">
+	<!--
+	{loop $guess->getPlayDatas() $playData}
+		var playData = new PlayData();
+		playData.setId('{$playData->getId()}');
+		playData.setName('{$playData->getName()}');
+		GuessPlayHelper.addPlayData(playData);
+	{/loop}
+	//-->
+	</script>
+{gtpl footer}

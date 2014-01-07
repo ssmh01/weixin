@@ -1,0 +1,49 @@
+<form class="form-horizontal" style="margin:0px;" method="post" id="ajaxform" name="ajaxform" action="/goods/lottery/?" enctype="multipart/form-data">
+<h1>寄送地址</h1>
+<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
+<div class="popupmenu_inner" style="padding:20px;width:550px;">
+	
+		<div class="modal-body">
+				<div class="control-group">
+				    恭喜你中奖了，请填写下面的寄送地址并提交，系统以提交寄送地址开始时间判断你最终是否中奖，请尽快填写。关闭本窗口示为放弃此次中奖。
+			    </div>
+			    <div class="control-group">
+				    <label class="control-label" for="addr">收件地址：</label>
+				    <div class="controls">
+						<input type="text" id="addr" class="span4" name="address"/>
+				    </div>
+			    </div>
+				
+			    <div class="control-group">
+				    <label class="control-label" for="truename">收件人：</label>
+				    <div class="controls">
+				    	<input type="text" id="truename" class="span3" name="username">
+				    </div>
+			    </div>
+				
+			    <div class="control-group">
+				    <label class="control-label" for="zip">邮编：</label>
+				    <div class="controls">
+				    	<input type="text" id="zip" class="span3" name="zip">
+				    </div>
+			    </div>
+				
+			    <div class="control-group">
+				    <label class="control-label" for="tel">联系电话：</label>
+				    <div class="controls">
+				    	<input type="text" id="zip" class="tel" name="mobile">
+				    </div>
+			    </div>										
+				
+				</div>
+			
+
+
+</div>
+<div class="modal-footer">
+	<span class="ajaxform_tip" id="__ajaxform">如果你提交时库存被其它用户消耗为0，那么你将不会中奖</span>
+	<input type="hidden" name="id" value="{$goods['id']}">
+	<input type="submit" class="btn btn-primary submit" value="提交" onclick="return ajaxPostForm('ajaxform', '', 'postFormHandle', '1000', '__ajaxform')"/>
+</div>
+
+</form>

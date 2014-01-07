@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<playway xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../site.xsd">
+	<name>猜胜负玩法</name>
+	<class>WinOrLost</class>
+	<status>0</status>
+	<summary>猜胜负玩法,适用于比赛类(如足球)</summary>
+	<parameter name="vd" label="胜负"></parameter>
+</playway>

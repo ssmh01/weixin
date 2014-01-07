@@ -1,0 +1,64 @@
+<form class="form-horizontal" style="margin:0px;" method="post" id="ajaxform" name="ajaxform" action="/member/register/register/?" enctype="multipart/form-data">
+<h1>会员注册</h1>
+<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
+<div class="popupmenu_inner" style="padding:20px;width:600px;">
+	
+		<div class="modal-body">
+			
+			{if R::getConfig()->getConfig('invite_open')}
+			<div class="control-group">
+				<label for="yqcode" class="control-label">邀请码</label>
+				<div class="controls">
+					<input type="text" id="yqcode" name="yqcode" class="span2" value="{param yqcode}">
+				</div>
+			</div>
+			{/if}
+			
+			<div class="control-group">
+				<label for="username" class="control-label">用户名</label>
+				<div class="controls">
+					<input type="text" id="name" name="name" class="span4">
+					<!--<span for="name" generated="true" class="error">注册后不能修改</span>-->
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label for="email" class="control-label">邮箱</label>
+				<div class="controls">
+					<input type="text" id="email"  name="email" class="span4">
+					<!--<span for="email" generated="true" class="error">用来找回密码，注册后不能修改</span>-->
+				</div>
+			</div>
+			
+				<div class="control-group">
+					<label for="password" class="control-label">密码</label>
+					<div class="controls">
+						<input type="password" id="password" name="password" class="span4">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label for="re_password" class="control-label">重复密码</label>
+					<div class="controls">
+						<input type="password" id="repassword" name="repassword" class="span4">
+					</div>
+				</div>
+			
+			<div class="control-group">
+				<label for="yzcode" class="control-label">验证码</label>
+				<div class="controls">
+					<input type="text" id="code" name="code" class="span2"> <img src="/ajax/verify/image/" id="image" alt="点击重新获取" title="点击重新获取" onclick="showVerificationCode('image')">
+				</div>
+			</div>																		
+			
+		</div>
+	
+</div>
+
+<div class="modal-footer">
+	<span id="__ajaxform" class="ajaxform_tip" style="color: red;"></span>
+	<input type="submit" class="btn btn-primary submit" onclick="return ajaxPostForm('ajaxform', '', 'jumpHome', '1000', '__ajaxform')" value="注册" />
+	<a href="/member/login/" class="login" data-dismiss="modal" aria-hidden="true">已有帐有，去登录</a>
+</div>
+
+</form>

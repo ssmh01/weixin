@@ -1,0 +1,43 @@
+{tpl header}
+<style>
+html{overflow-y:hidden;}
+</style>
+<div class="wrapper960">
+	<div class="KK_ManageIndex_mainbox">
+    	<div class="KK_ManageIndex_mainbox_inner">
+        	<div class="KK_ManageIndex_logo" style="font-size:14px;">预言星管理系统</div>
+            <div class="KK_Manage_login_top"></div>
+            <div class="KK_Manage_login">
+            	<form action="{url /admin/login/signin/}" method="post">
+                    <div class="KK_Manage_loginInner">
+                        <div class="tit"></div>
+                        <input type="text" class="txt1" name="name" value="" />
+                        <input type="password" class="txt2" name="password" value="" />
+                        {if $iscaptcha}
+                        <dl>验证码：<input type="text" name="captcha" class="txt3" /><span class="pic"><a href="javascript:captcha('captcha');"><img id="captcha" src="{url /common/captcha/show}" /></a></span></dl>
+                        {/if}
+                        <b class="line"></b>
+                        <input type="submit" class="btn" name="loginsubmit" value="" />
+                    </div>
+                </form>
+            </div>
+            <div class="KK_Manage_login_bot"></div>
+        </div>
+    </div>	
+</div>
+<script>
+var move_top = 0;
+jq(document).ready(function(){
+	show_tip('请登录进行后台管理');
+	move_div();
+	jq(window).resize(move_div);
+});
+function move_div(){
+	move_top = (jq(window).height()-jq(".KK_ManageIndex_mainbox_inner").height()-50)/2;
+	if(move_top<50){
+		move_top = 50;
+	}
+	jq(".KK_ManageIndex_mainbox_inner").css("padding-top",move_top);
+}
+</script>
+{tpl footer}

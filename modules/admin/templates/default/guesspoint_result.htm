@@ -1,0 +1,75 @@
+{tpl header}
+{res:js string.extends.js}
+{res:js admin/param.js}
+<style>
+.param_name{margin-right:10px;}
+#params li{height:30px;}
+</style>
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 竞猜管理 &gt;&gt; 结果判定</div>
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                    <a href="{$index_url}" style="float: right;">返回列表</a>
+	                </span>
+                </h3>
+                <form action="{url /$currentModule/$currentAction/result/}" method="post" onsubmit="return opConfirm('操作不可恢复，是否继续')">
+                    <div class="KK_content_list2_con marginTop10">
+                        <div class="KK_content_list2_table">
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name">说明:</td>
+                                    <td class="cot">
+                                    	如足球的竞猜参数结果就是两支队伍的比分数,财经和彩票的竞猜参数结果就是开盘号码
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">判定对象:</td>
+                                    <td class="cot">
+                                    	{$item->getTitle()}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">结果:</td>
+                                    <td class="cot">
+                                    <ul id="params">
+                                    	{loop $item->getParams() $param}
+                                    	<li>
+                                    	<span class="param_name">{$param->getLabel()}:</span><input type="text" value="{$param->getValue()}" class="txt" name="{$param->getName()}"/>
+                                    	</li>
+                                    	{/loop}
+                                    </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name">&nbsp;</td>
+                                    <td class="cot">&nbsp;
+                                    	<input type="hidden" name="id" value="{$item->getId()}" />
+                                        <input type="submit"class="btn" value="结果判定"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{tpl footer}

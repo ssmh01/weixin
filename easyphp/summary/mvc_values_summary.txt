@@ -1,0 +1,10 @@
+=====================模版中的变量的解析规则=====================
+作用范围从大到小:[HttpContext[$con], HttpSession[ses], HttpRequest[$req], HttpCookie[$cok]]
+模版中变量的关系索引有3种,一种是数组索引,一种是属性索引,一种是成员变量索引,数组索引用':',属性索引用'#', 
+	成员变量索引用'.'.比如你想表示HttpRequest中有一个数组属性,属性名为arr,arr中有一个名为的tag的
+	Tag对象,Tag对象有名为startTag的成员变量,那么在模版中可以写成$req#arr:tag.startTag
+HttpRequest 中的属性将全部被解压出来,所以如果要访问HttpRequest中的arr属性,可以直接写成$arr
+额外增加一个特殊的对象[$param],用来访问HttpRequest中的参数.
+
+
+HttpRequest中的scripts是个内置属性,用来设置当前请求应该加载的脚本.

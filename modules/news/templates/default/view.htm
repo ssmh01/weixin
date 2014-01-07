@@ -1,0 +1,20 @@
+{gtpl header}
+	<div class="article_body">
+        
+		<div class="left">
+			<div class="alink">当前位置：<a href="/">首页</a> > <a href="/news/list/">说明</a> > 竞猜规则详细说明</div>
+			<h2>{$item['title']}</h2>
+			<p class="artinfo">点击数： {$item['views']} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 日期：{date $item['create_time'] Y-m-d}</p>
+			<div class="artbody">
+				{$item['content']}
+			</div>
+		</div>
+		
+		<div class="right">
+			{tpl categorys}
+		</div>
+		
+		<div class="clear"></div>
+				
+	</div>
+{gtpl footer}

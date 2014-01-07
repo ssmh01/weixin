@@ -1,0 +1,36 @@
+<h1>在线充值</h1>
+<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
+<div class="popupmenu_inner" style="padding:20px; width:400px;">
+	<div id="__ajaxform">
+	<form style="margin:0px;" method="post" id="ajaxform" name="ajaxform" target="_blank" action="/member/recharge/index/?" enctype="multipart/form-data">
+		<div class="modal-body" style="padding:0px;">
+				
+				<div class="control-group">
+					<label for="msgcontent">充值金币</label>
+					<div class="controls">
+						 <input type="text" class="span3" name="money" value="30">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label for="yzcode">验证码</label>
+					<div class="controls">
+						<input type="text" id="code" class="span2" name="code">
+						<img src="/ajax/verify/image/" id="image" alt="点击重新获取" title="点击重新获取" onclick="showVerificationCode('image')">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label for="yzcode">支付方式</label>
+					<div class="controls">
+						<input type="radio" name="pay_type" value="alipay" checked />&nbsp;<img alt="支付宝" src="{res:image alipay.png}" width="100px;">
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal-footer">
+				<input type="submit" class="btn btn-primary submit" value="充值" onclick="hideMenu();"/>
+			</div>
+	</form>
+	</div>
+</div>

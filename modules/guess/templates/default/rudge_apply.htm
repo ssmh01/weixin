@@ -1,0 +1,40 @@
+<form action="{url /$currentModule/rudge/apply}" method="post" onsubmit="return opConfirm('操作不可恢复，是否继续')">
+<h1>自定义竞猜结果判定</h1>
+<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
+<div class="popupmenu_inner" id="wfModal" style="padding:20px;width:450px;">
+
+	
+	<input type="hidden" name="id" value="{$item->getId()}" /> 
+	   
+		<div class="modal-body" style="padding-left: 20px;max-height: 1000px;">
+			<div class="control-group">
+				<dl class="dl-horizontal" style="margin-top: 0px;">
+					<dt>说明：</dt>
+					<dd class="c9">直接选择答案，然后提交</dd>
+					
+					<dt>判定对象：</dt>
+					<dd class="c9">{$item->getTitle()}</dd>
+					
+					<dt>结果：</dt>
+					<dd class="c9">
+						<ul id="params" style="margin:0px;">
+	                    	{loop $item->getParameter()->getOptions() $option}
+	                    	<li style="padding: 5px 0px;">
+								<input type="radio" name="option" id="opt_{$option->getValue()}" value="{$option->getValue()}" {if $item->getParameter()->getValue() == $option->getValue()}checked{/if} />
+								<label for="opt_{$option->getValue()}" style="display: inline;">{$option->getLabel()}</label>
+							</li>
+	                    	{/loop}
+	                    </ul>
+					</dd>
+				</dl>
+			</div>
+		</div>
+
+</div>
+<div class="modal-footer">
+	<span class="ajaxform_tip" id="error"></span>
+	<input type="submit"class="btn btn-primary submit" value="确定"/>
+	<!--<input type="button" class="btn btn-primary submit" value="确定" onclick="GuessAddHelper.collectPlayWayDataAndAdd()"/>-->
+</div>
+
+</form>

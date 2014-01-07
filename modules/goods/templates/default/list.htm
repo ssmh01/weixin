@@ -1,0 +1,46 @@
+{gtpl header}
+	<div class="exchange_body">
+        <ul class="nav nav-tabs" id="exchange_tab">
+	        <li class="active"><a href="/goods/list/">所有奖品</a></li>			
+			<li><a href="/goods/my/">我的奖品</a></li>
+        </ul>
+        
+        <div class="tab-content exchange_list">
+	        
+			<!-- 所有奖品 -->
+			<div class="tab-pane active" id="t1">
+				<div class="title">幸运抽奖</div>
+				{foreach $items $item}
+					{if $item['can_lottery']}
+					{run $hasLottery = true;}
+					<div class="pitem">
+						<div class="pimg"><a href="{url /goods/view/?id=\[$item[id]\]}"><img src="{$item[image]}" alt="{$item[title]}" title="{$item[title]}"/></a></div>
+					</div>
+					{/if}
+				{/loop}
+				{if !$hasLottery}
+				<div class="pitem">
+					暂无抽奖奖品
+				</div>
+				{/if}
+
+				<div class="title">积分兑换</div>
+				
+				{foreach $items $item}
+					{if $item['can_exchange']}
+					{run $hasExchange = true;}
+					<div class="pitem">
+						<div class="pimg"><a href="{url /goods/view/?id=\[$item[id]\]}"><img src="{$item[image]}" alt="{$item[title]}" title="{$item[title]}"/></a></div>
+					</div>
+					{/if}
+				{/loop}
+				{if !$hasExchange}
+				<div class="pitem">
+					暂无兑换奖品
+				</div>
+				{/if}						
+	        </div>
+	        
+        </div>
+	</div>
+{gtpl footer}

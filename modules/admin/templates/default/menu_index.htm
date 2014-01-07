@@ -1,0 +1,55 @@
+{tpl header}
+{res:js jquery/jquery.selectAll.js}
+
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; {lang system_setting} &gt;&gt; 系统菜单</div>
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                    <a href="{$act_url}add/" style="float: right;">添加</a>
+	                </span>
+	            </h3>
+                <form action="{$act_url}batch/" method="post">
+                    {html:table
+                        id=admin_menu_table
+                        class=list_table
+                        datas=$list
+                        pk=id
+                        imagepath=/res/images/admin/
+                        opwidht=100px
+                        allcbproperty=rel:all_sel
+                        itemcbproperty=rel:item_data
+                        fields=[
+                            <"name":"id", "label":"ID", "align":"center", "notsort":"true">,
+                            <"name":"name", "label":"菜单名称", "align":"center", "notsort":"true">,
+                            <"name":"status", "label":"是否显示", "align":"center", "notsort":"true","toggle":"true">,
+                            <"name":"sort_num", "label":"sort_common", "align":"left", "notsort":"true">
+                        ]
+                        ops=[
+                            <"type":"edit", "label":"edit">,
+                            <"type":"delete">
+                        ]
+                    }
+                </form>
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<script type="text/javascript" language="javascript">
+function showNewMenu(show){
+    show ? jq("#move_menus").show() : jq("#move_menus").hide();
+}
+jq("#move_menus").hide();
+jq().ready(function(){
+    jq.selectAll({"allRel":"all_sel"});
+});
+</script>
+
+{tpl footer}

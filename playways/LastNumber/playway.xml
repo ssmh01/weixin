@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<playway xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../site.xsd">
+	<name>末位号码玩法</name>
+	<class>LastNumber</class>
+	<status>0</status>
+	<summary>末位号码玩法,适用于财经或彩票</summary>
+	<parameter name="sd" label="末位号码" >
+		<option value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+	</parameter>
+</playway>

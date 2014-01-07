@@ -1,0 +1,22 @@
+<h1>竞猜分享，赚取积分</h1>
+<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
+<div class="popupmenu_inner" style="padding:20px;">
+	<form style="margin:0px;" method="post" id="ajaxform" name="ajaxform" action="/member/share/guess/?" enctype="multipart/form-data">
+		<div class="modal-body" style="padding:0px;">
+				
+				<div class="control-group">
+					<label for="msgcontent">分享内容</label>
+					<div class="controls">
+						 <textarea style="width: 400px; height: 100px;" name="message">{$shareMessage}</textarea>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<span class="ajaxform_tip" id="__ajaxform"></span>
+				<input type="hidden" name="id" value="{$guess['id']}">
+				<input type="submit" class="btn btn-primary submit" value="分享" onclick="return ajaxPostForm('ajaxform', '', 'postFormHandle', '1000', '__ajaxform')"/>
+			</div>
+</form>
+</div>

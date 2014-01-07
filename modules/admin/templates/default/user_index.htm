@@ -1,0 +1,88 @@
+{tpl header}
+
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 用户管理 &gt;&gt; 用户</div>
+            	<div class="seachbox">
+		            <div class="content2">
+		                <form action="{$index_url}" name="searchForm" method="get">
+		                <table class="form-table">
+		                    <tbody>
+		                        <tr>
+		                            <td width="10px">
+		                                <img src="{res:image icon_search.gif}" border="0" alt="SEARCH" />
+		                            </td>
+		                            <td >
+		                                用户ID:
+		                                <input type="text" class="txt" name="id" value="{param id}" style="width:100px" />
+		                                &nbsp;
+		                                用户名称:
+		                                <input type="text" class="txt" name="name" value="{param name}" style="width:100px" />
+				                         &nbsp;
+		                                创建时间
+		                                 <input class="Wdate" type="text" name="startTime" value="{param startTime}" onClick="WdatePicker({'dateFmt':'yyyy-MM-dd HH:mm'})" style="width:150px" />
+                                            -
+                                            <input class="Wdate" type="text" name="endTime" value="{param endTime}" onClick="WdatePicker({'dateFmt':'yyyy-MM-dd HH:mm'})" style="width:150px" />
+		                            </td>
+		                            <td><input class="regular-button" type="submit" value="搜索" /></td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+		                </form>
+		            </div>
+		        </div>
+            	
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                <!--     <a href="{$act_url}add/" style="float: right;">添加</a>  -->
+	                </span>
+	            </h3>
+	            
+                    <table id="" class="list_table" cellpadding="0" cellspacing="0" border="0">
+					<thead>
+					<tr>
+						<th align="left">用户ID</th>
+						<th align="left">用户名</th>
+						<th align="left">邮箱</th>
+						<th align="left">金币/冻结</th>
+						<th align="left">积分/冻结</th>
+						<th align="left">上次登陆时间</th>
+						<th align="left">注册时间</th>
+						<th align="left" width="100px">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+						{loop $items $item}
+						<tr>
+								<td align="left">{$item['id']}</td>
+								<td align="left">{$item['name']}</td>
+								<td align="left">{$item['email']}</td>
+								<td align="left">{$item['available_money']}/{$item['freeze_money']}</td>
+								<td align="left">{$item['available_integral']}/{$item['freeze_integral']}</td>
+								<td align="left">{date $item['last_login_time'] Y-m-d}</td>
+								<td align="left">{date $item['register_time'] Y-m-d}</td>
+								<td align="left">
+									<a href="{url /$currentModule/$currentAction/edit/?id=$item[id]}">编辑</a>&nbsp;
+							<!-- 		<a href="{url /$currentModule/$currentAction/detail/?id=$item[id]}">详细</a>  -->
+								</td>
+						</tr>
+						{/loop}
+					</tbody>
+					</table>
+				{if $pages}
+				 <div class="page">
+					{$pages}
+				　</div>
+				 {/if}
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+{tpl footer}

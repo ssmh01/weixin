@@ -1,0 +1,67 @@
+{tpl header}
+<style>
+.param_name{margin-right:10px;}
+#params li{height:30px;}
+</style>
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 竞猜管理 &gt;&gt; 编辑分类玩法</div>
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                    <a href="{$index_url}" style="float: right;">返回列表</a>
+	                </span>
+                </h3>
+                <form action="{url /$currentModule/$currentAction/playWay/}" method="post">
+                    <div class="KK_content_list2_con marginTop10">
+                        <div class="KK_content_list2_table">
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name">编辑对象:</td>
+                                    <td class="cot">
+                                    	{$item['name']}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">玩法:</td>
+                                    <td class="cot">
+                                    <ul id="params">
+                                    	{loop $playWays $playWay}
+                                    	<li>
+                                    	<input type="checkbox" name="play_ways[]" value="{$playWay['id']}" {if in_array($playWay['id'], $item['play_ways'])}checked{/if}>{$playWay['name']}
+                                    	</li>
+                                    	{/loop}
+                                    </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name">&nbsp;</td>
+                                    <td class="cot">&nbsp;
+                                    	<input type="hidden" name="id" value="{$item['id']}" />
+                                        <input type="submit"class="btn" value="保  存"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{tpl footer}

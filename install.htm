@@ -1,0 +1,113 @@
+<!--<?php
+print <<<EOT
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>预言星安装程序</title>
+<link href="/res/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+	*{margin: 0px; padding: 0px;}
+	h1{font-size: 18px; text-align: center; font-weight: bold;}
+	.installbody{margin: 0px auto; width: 960px; font-size: 14px;}
+	.f14{font-size: 14px;}
+	.bold{font-weight: bold;}
+	.mt20{margin-top: 20px;}
+</style>
+</head>
+<body>
+	<div class="installbody">
+	<h1>预言星竞猜系统安装程序</h1>
+	
+<!--
+EOT;
+if(empty($step)){
+print <<<EOT
+-->
+		
+    <form class="form-horizontal" action="install.php" method="post">
+	<input type="hidden" name="step" value="2">    
+		
+		<fieldset>
+			
+			<legend class="f14 bold">数据库信息</legend>
+			
+			<div class="control-group">
+			    <label class="control-label" for="database_host">数据库地址</label>
+			    <div class="controls">
+			    	<input type="text" id="database_host" name="database_host" placeholder="">
+			    </div>
+		    </div>
+		    <div class="control-group">
+			    <label class="control-label" for="database_user">数据库用户名</label>
+			    <div class="controls">
+			    	<input type="text" id="database_user" name="database_user" placeholder="">
+			    </div>
+		    </div>
+		    <div class="control-group">
+			    <label class="control-label" for="database_password">数据库密码</label>
+			    <div class="controls">
+			    	<input type="text" id="database_password" name="database_password" placeholder="">
+			    </div>
+		    </div>			
+			<div class="control-group">
+			    <label class="control-label" for="database_name">数据库名</label>
+			    <div class="controls">
+			    	<input type="text" id="database_name" name="database_name" placeholder="">
+			    </div>
+		    </div>
+			
+			<legend class="f14 bold mt20">管理员信息</legend>
+		    <div class="control-group">
+			    <label class="control-label" for="admin_user">管理员用户名</label>
+			    <div class="controls">
+			    	<input type="text" id="admin_user" name="admin_username" placeholder="">
+			    </div>
+		    </div>
+		    <div class="control-group">
+			    <label class="control-label" for="admin_password">管理员密码</label>
+			    <div class="controls">
+			    	<input type="text" id="admin_password" name="admin_password" placeholder="">
+			    </div>
+		    </div>
+			
+		    <div class="control-group">
+		    <div class="controls">
+			    <button type="submit" class="btn">开始安装</button>
+		    </div>
+		    </div>
+		
+		</fieldset>
+    </form>
+	
+<!--
+EOT;
+}elseif($step == '2'){
+print <<<EOT
+-->
+	
+	<fieldset>
+		<legend class="f14 bold">安装信息</legend>	
+		<div>$installinfo</div>
+
+		<legend class="f14 bold mt20">安装成功</legend>	
+		<div align="center">
+			<p>恭喜你，安装成功！</p>
+			<p><a href='/admin/login/'>点击这里进入管理面板</a></p>
+		</div>
+	</fieldset>
+
+<!--
+EOT;
+}
+print <<<EOT
+-->	
+	</div>
+	
+</body>
+</html>
+
+<!--
+EOT;
+?>-->

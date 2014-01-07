@@ -1,0 +1,162 @@
+{tpl header}
+{res:js kindeditor/kindeditor-min.js}
+{res:js kindeditor/lang/zh_cn.js}
+<link rel="stylesheet" href="/res/js/kindeditor/themes/default/default.css" />
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 商城管理 &gt;&gt;  修改商品</div>
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                    <a href="{$index_url}" style="float: right;">返回列表</a>
+	                </span>
+                </h3>
+                <form action="{$update_url}" method="post" onsubmit="return checkForm(this);">
+                    <div class="KK_content_list2_con marginTop10">
+                        <div class="KK_content_list2_table">
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name"><span class="must">*</span>标题</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_title" value="{$item['title']}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name"><span class="must">*</span>图片</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_image" id="image" value="{$item['image']}" readonly/>&nbsp;<a class="link_button" href="javascript:;" onclick="openImg('#image')" >上传</a><span class="input_tip">220*200</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">状态</td>
+                                    <td class="cot">
+                                    	<input type="radio" name="m_status" value="0" {if !$item['status']}checked{/if}>下架
+                                    	<input type="radio" name="m_status" value="1" {if $item['status']}checked{/if}>上架
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">库存</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_count" value="{$item['count']}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">参与抽奖</td>
+                                    <td class="cot">
+                                    	<input type="radio" name="m_can_lottery" value="1" {if $item['can_lottery']}checked{/if}>参与
+                                    	<input type="radio" name="m_can_lottery" value="0" {if !$item['can_lottery']}checked{/if}>不参与
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">抽奖次数</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_lottery_count"  value="{$item['lottery_count']}" /><span class="input_tip">每个用户抽奖次数限制 0为不限</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">抽奖消耗积分</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_lottery_credit"  value="{$item['lottery_credit']}" /><span class="input_tip">每次抽奖消耗的积分 0为不消耗积分</span>
+                                    </td>
+                                </tr>								
+                                <tr>
+                                    <td class="name">中奖概率</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_probability" id="image" value="{$item['probability']}" /><span class="input_tip">0-1之间，0为中奖，1为100%中奖</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">参与兑换</td>
+                                    <td class="cot">
+                                    	<input type="radio" name="m_can_exchange" value="1" {if $item['can_exchange']}checked{/if}>参与
+                                    	<input type="radio" name="m_can_exchange" value="0" {if !$item['can_exchange']}checked{/if}>不参与
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">兑换金币</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_money" value="{$item['money']}" /><span class="input_tip">0为免费兑换</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">金币下限</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_money_limit" value="{$item['money_limit']}" /><span class="input_tip">金币下限,0为不设限</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">排序</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_sort_num" value="{$item['sort_num']}" /><span class="input_tip">越大越靠前</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name" >简介</td>
+                                    <td class="cot"></td>
+                                </tr>
+                                <tr>
+									<td colspan="2">
+									<textarea id="summary" name="m_summary" style="width:100%;height:400px;">{$item['summary']}</textarea>
+									</td>
+								</tr>
+								<script type="text/javascript">							
+									var editor;
+							        KindEditor.ready(function(K) {
+		                                editor = K.create('#summary', {
+		                                });
+							        });
+								</script>
+                            </table>
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name">&nbsp;</td>
+                                    <td class="cot">&nbsp;
+                                    	<input type="hidden" name="id" value="{$item['id']}">
+                                        <input type="submit"class="btn" value="保  存"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script>
+	<!--
+	var editor;
+   	KindEditor.ready(function(K) {
+   		 	editor = K.editor({
+   			allowFileManager : true
+   		});
+   	});
+
+   	function openImg(obj)
+   	{
+   		editor.loadPlugin('image', function() {
+   			editor.plugin.imageDialog({
+   				imageUrl : $(obj).attr('src'),
+   				clickFn : function(url, title, width, height, border, align) {
+   					$(obj).val(url);
+   					editor.hideDialog();
+   				}
+   			});
+   		});
+   	}
+    //-->
+    </script>
+{tpl footer}

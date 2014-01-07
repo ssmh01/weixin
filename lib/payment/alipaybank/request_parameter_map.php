@@ -1,0 +1,19 @@
+<?php
+return array(
+	//基本参数
+	'payment_charset'=>'input_charset',
+	'payment_sign_type'=>'sign_type',
+	'payment_asyn_url'=>'notify_url',
+	'payment_sync_url'=>'return_url',
+	//业务参数
+	'payment_out_trade_no'=>'out_trade_no',
+	'payment_payment_type'=>'payment_type',
+	'payment_subject'=>'subject',
+	'payment_price'=>'price',
+	'payment_quantity'=>'quantity',
+	'payment_total_fee'=>'total_fee',
+	'payment_body'=>'body',
+	'payment_show_url'=>'show_url',
+	'payment_pay_method'=>'paymethod',
+	'payment_default_bank'=>'defaultbank',
+);

@@ -1,0 +1,116 @@
+{tpl header}
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 系统管理 &gt;&gt;  修改微博</div>
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                    <a href="{$index_url}" style="float: right;">返回列表</a>
+	                </span>
+                </h3>
+                <form action="{$update_url}" method="post" onsubmit="return checkForm(this);">
+                    <div class="KK_content_list2_con marginTop10">
+                        <div class="KK_content_list2_table">
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                	<td class="name">添加说明</td>
+                                    <td class="cot">添加微博前先要添加微博接入接口的实现，否则绑定时会出错</td>
+                                </tr>
+                                 <tr>
+                                    <td class="name"><span class="must">*</span>名称</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_name" value="{$item['name']}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name"><span class="must">*</span>类型代码</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_type" value="{$item['type']}" readonly/><span class="input_tip">不能修改</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">应用KEY</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_app_key" value="{$item['app_key']}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">应用Secret</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_app_secret" value="{$item['app_secret']}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">URL</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_url" value="{$item['url']}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">排序</td>
+                                    <td class="cot">
+                                    	<input type="text" class="txt" name="m_sort_num" value="{$item['sort_num']}" /><span class="input_tip">越大越靠前</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="name">状态</td>
+                                    <td class="cot">
+                                    	<input type="radio" name="m_status" value="1" {if $item['status']}checked{/if}>启用
+                                    	<input type="radio" name="m_status" value="0" {if !$item['status']}checked{/if}>禁用
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                            <table>
+                                <colgroup>
+                                    <col style="width:17%;" />
+                                    <col style="width:83%;" />
+                                </colgroup>
+                                <tr>
+                                    <td class="name">&nbsp;</td>
+                                    <td class="cot">&nbsp;
+                                    	<input type="hidden" name="id" value="{$item['id']}">
+                                        <input type="submit"class="btn" value="保  存"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script>
+	<!--
+	var editor;
+   	KindEditor.ready(function(K) {
+   		 	editor = K.editor({
+   			allowFileManager : true
+   		});
+   	});
+
+   	function openImg(obj)
+   	{
+   		editor.loadPlugin('image', function() {
+   			editor.plugin.imageDialog({
+   				imageUrl : $(obj).attr('src'),
+   				clickFn : function(url, title, width, height, border, align) {
+   					$(obj).val(url);
+   					editor.hideDialog();
+   				}
+   			});
+   		});
+   	}
+    //-->
+    </script>
+{tpl footer}

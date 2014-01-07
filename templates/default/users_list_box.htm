@@ -1,0 +1,22 @@
+<div class="content">
+	{if $userList}
+	{loop $userList $item}
+	<div class="useritem">
+		<img src="{$item['avatar']}" />
+		<a href="{url /member/space/?uid=$item[id]}">{$item['name']}</a>
+		<ul>
+			<li class="a">竞猜<span>{$item['guess_count']}</span>场&nbsp;胜率<span>{$item['accuracy']}%</span></li>
+			<li class="b">
+			{if !$item['province'] && !$item['city']}
+			<span>地址不详</span>
+			{else}
+			<span>{$item['province']}{$item['city']}</span>
+			{/if}
+			</li>
+		</ul>
+	</div>
+	{/loop}
+	{else}
+	<div>暂无信息</div>
+	{/if}
+</div>

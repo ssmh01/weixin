@@ -1,0 +1,68 @@
+{tpl header}
+
+<div class="KK_ManageList_content">
+	{tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+    	<div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+        	<div class="KK_ManageList_mainbox_inner">
+            	<div class="KK_ManageList_position">{lang common_position} &gt;&gt; 资讯管理 &gt;&gt; 资讯</div>
+            	<div class="seachbox">
+		            <div class="content2">
+		                <form action="{$index_url}" name="searchForm" method="get">
+		                <table class="form-table">
+		                    <tbody>
+		                        <tr>
+		                            <td >
+		                            选择分类:
+		                            <select name="type" onchange="window.location.href='{$index_url}?cate='+this.value;">
+		                            {loop $categorys $category}
+		                            <option value="{$category['id']}" {if $category['id'] == $cate}selected{/if}>{$category['name']}</option>
+		                            {/loop}
+		                            </select>
+		                            </td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+		                </form>
+		            </div>
+		        </div>
+            	
+                <h3>
+	                <span class="right" style="margin-right: 15px;">
+	                    <a href="{$act_url}add/?type={$type}" style="float: right;">添加</a>
+	                </span>
+	            </h3>
+	            
+                    {html:table
+                        class=list_table
+                        datas=$items
+                        pk=id
+                        imagepath=/res/images/
+                        opwidht=150px
+                        fields=[
+                            <"name":"title", "label":"标题", "align":"center", "edit":"true">,
+                            <"name":"cate_id", "label":"分类", "align":"center", "type":"map", "map":"categorys", "mapKey":"name">,
+                            <"name":"views", "label":"浏览数", "align":"center", "edit":"true">,
+                            <"name":"sort_num", "label":"排序", "align":"center", "edit":"true">,
+                            <"name":"create_time", "label":"创建时间", "align":"left",  "type":"date">
+                        ]
+                        ops=[
+                            <"type":"custom", "label":"查看", "module":"news", "action":"view","params":"id">,
+                            <"type":"edit", "label":"edit">,
+                            <"type":"delete">
+                        ]
+                    }
+				{if $pages}
+				 <div class="page">
+					{$pages}
+				　</div>
+				 {/if}
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+{tpl footer}

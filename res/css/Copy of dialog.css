@@ -1,0 +1,93 @@
+#ajaxwaitid {
+    background: none repeat scroll 0 0 #DD0000;
+    color: #FFFFFF;
+    display: none;
+    height: 1.6em;
+    line-height: 1.6em;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    z-index: 100;
+}
+
+.popupmenu_centerbox {
+    background: none repeat scroll 0 0 #F8F8F8;
+    border: 4px solid #3B86C4;
+    min-width: 250px;
+    text-align: left;
+}
+
+.popupmenu_centerbox h1 {
+    color: #4D7997;
+    cursor: move;
+    font-size: 18px;
+    line-height: 26px;
+	border-bottom: 1px solid #EEEEEE;
+	margin-top: 2px;
+	margin-bottom: 0;
+    padding: 5px 10px;
+}
+
+.popupmenu_centerbox .float_del {
+    background-image: url("/res/images/delete3.gif");
+ 	display: block;
+    height: 14px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    text-indent: -999em;
+    top: 1em;
+    width: 13px;
+}
+
+.popupmenu_centerbox .popupmenu_inner {
+    color: #444444;
+    padding: 10px;
+}
+
+#append_parent .submit {
+    background: none repeat scroll 0 0 #6292A8;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 22px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    padding: 0 5px;
+}
+
+.cate_select{
+	margin-left:20px;
+	margin-right:20px;
+}
+.cate_select li{
+	float:left;
+	width:85px;
+	height:25px;
+	line-height:25px;
+}
+.cate_select li.mcates{
+	float:left;
+	width:120px;
+	height:25px;
+	line-height:25px;
+}
+.op{
+	clear:both;
+	padding-top:10px;
+	margin-bottom:10px;
+	margin-left:150px;
+}
+
+.ajax_table{
+	padding:10px;
+}
+
+.ajax_table tr{
+	height:30px;
+	line-height:30px;
+}
+
+.ajaxform_tip{color:red; padding-left:10px;padding-right:10px;}

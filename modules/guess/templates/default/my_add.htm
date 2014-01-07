@@ -1,0 +1,44 @@
+{gtpl header}
+<div class="home_body">
+		<div class="left">
+			<div class="box2" style="margin-top:0px;">
+				<div class="title">
+					<div class="caption">
+						{$title}
+					</div>			
+				</div>
+				<div class="content">
+					{tpl my_guess_box}		
+				</div>
+				{$pages}			
+			</div>		
+		</div>
+		
+		<div class="right">
+			{gtpl notice_box}
+			<ul class="guesstype">
+				<li><a href="/">最新动态</a><span>{$guessNewCount}</span></li>
+				<li {$addClass}><a href="/guess/my/add/">我发布的竞猜</a><span>{$guessAddCount}</span></li>
+				<li {$playClass}><a href="/guess/my/play/">我参与的竞猜</a><span>{$guessPlayCount}</span></li>
+				<li {$attentionClass}><a href="/guess/my/attention/">我关注的竞猜</a><span>{$attentionGuessCount}</span></li>
+				<li {$friendClass}><a href="/guess/my/friend/">我好友的竞猜</a><span>{$friendGuessCount}</span></li>
+				<li {$inviteClass}><a href="/guess/my/invite/">邀请我参与的竞猜</a><span>{$inviteGuessCount}</span></li>
+			</ul>
+			{gtpl invite_box}
+			
+			<!--
+			<div class="ulist">
+				<div class="title">您可能感兴趣的用户</div>
+				{gtpl users_list_box}			
+			</div>
+			-->
+			
+			<div class="ad">
+				{gtpl ad_box}				
+			</div>
+		
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+{gtpl footer}

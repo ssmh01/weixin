@@ -1,0 +1,103 @@
+{tpl header}
+
+<div class="KK_ManageList_content">
+    {tpl menu}
+    <div class="KK_ManageList_mainRt_side right">
+        <div class="KK_ManageList_mainbox_top"></div>
+        <div class="KK_ManageList_mainbox">
+            <div class="KK_ManageList_mainbox_inner">
+                <div class="KK_ManageList_position">{lang now_here_common}&gt;&gt; {lang system_setting} &gt;&gt; 系统设置</div>
+                <div class="KK_content_list2_tab">
+                    <ul class="tab">
+                        {foreach $tab_list $key $val}
+                        <li id="tabone{$key}" onmouseover="setTab('tabone',{$key},{$tab_num});" {if $key == 1}class="hover"{/if}>{lang $val.'_tab_config'}</li>
+                        {/foreach}
+                    </ul>
+                </div>
+                <form action="{$update_url}" method="post" onsubmit="return checkForm(this);" enctype="multipart/form-data">
+                    <div class="KK_content_list2_con marginTop10">
+                        <div class="KK_content_list2_table">
+                            {foreach $tab_list $key1 $val1}
+                                <div id="con_tabone_{$key1}" {if $key1 == 1}class="hover"{else}style="display:none;"{/if}>
+                                    <table>
+                                        <colgroup>
+                                            <col style="width:17%;" />
+                                            <col style="width:83%;" />
+                                        </colgroup>
+                                        {foreach $info $key $val}
+                                            {if $val['tab'] == $val1}
+                                                <tr {if $val['type'] == 'hidden'} style="display:none;"{/if}>
+                                                    <td class="name">{lang $val['key'].'_config'}</td>
+                                                    <td class="cot">
+                                                        {if $val['type'] == 'text'}
+                                                            <input class="txt" type="text" name="config[{$val['id']}]" value="{$val['value']}" style="width:300px;" />
+                                                        {elseif $val['type'] == 'password'}
+                                                            <input class="txt" type="password" name="config[{$val['id']}]" value="{$val['value']}" style="width:300px;" />
+                                                        {elseif $val['type'] == 'hidden'}
+                                                            <input type="hidden" name="config[{$val['id']}]" value="{$val['value']}" />
+                                                        {elseif $val['type'] == 'textarea'}
+                                                            <textarea name="config[{$val['id']}]" cols="50" rows="5">{$val['value']}</textarea>
+                                                        {elseif $val['type'] == 'select'}
+                                                            <select name="config[{$val['id']}]">
+                                                                {foreach $val['options'] $key2 $val2}
+                                                                <option value="{$val2}" {if $val2==$val['value']}selected="selected"{/if}>{$val2}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        {elseif $val['type'] == 'radio'}
+                                                            {foreach $val['options'] $radioK $radioV}
+                                                            <input name="config[{$val['id']}]" type="radio" value="{$radioV[val]}" {if $radioV[val]==$val['value']}checked="checked"{/if}>{$radioV[text]}</input>
+                                                            {/foreach}
+                                                        {elseif $val['type'] == 'checkbox'}
+                                                            <input type="hidden" name="config[{$val['id']}][]" value="" />
+                                                            {foreach $val['value'] $chbK $chbV}
+                                                            <input name="config[{$val['id']}][]" type="checkbox" value="{$chbV[val]}"{if in_array($chbV[val], $val[valuearr])} checked="checked"{/if}>{$chbV[text]}</input>
+                                                            {/foreach}
+                                                        {elseif $val['type'] == 'editor'}
+                                                            <textarea name="config[{$val[id]}]" id="{$val[id]}" style="width:500px; height:400px;">{$val['value']}</textarea>
+                                                            <script src="{config site_url}/res/js/kindeditor/kindeditor-min.js"></script>
+                                                            <script type="text/javascript">
+                                                                var editor;
+                                                                var uploadUrl = {url '/upload/index/index/?admin=1'};
+                                                                var editorID = "{$val[id]}";
+                                                                KindEditor.ready(function(K) {
+                                                                    editor = K.create('#'+editorID, {
+                                                                        uploadJson: uploadUrl
+                                                                    });
+                                                                });
+                                                            </script>
+                                                        {elseif $val['type'] == 'file'}
+                                                            {if $val['value']}
+                                                                <div><img src="{config upload_save_url}{$val[value]}" /></div>
+                                                            {/if}
+                                                            <input type="file" name="{$val[parent_tab]}_{$val[key]}" />
+                                                        {/if}
+                                                    </td>
+                                                </tr>
+                                            {/if}
+                                        {/foreach}
+                                    </table>
+                                    <table>
+                                        <colgroup>
+                                            <col style="width:17%;" />
+                                            <col style="width:83%;" />
+                                        </colgroup>
+                                        <tr>
+                                            <td class="name">&nbsp;</td>
+                                            <td class="cot">&nbsp;
+                                                <input type="submit" class="btn" value="保  存"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            {/foreach}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="KK_ManageList_mainbox_bot"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+{tpl footer}

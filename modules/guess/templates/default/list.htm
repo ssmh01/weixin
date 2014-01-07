@@ -1,0 +1,116 @@
+{gtpl header}
+	
+	<div class="list_body">
+		<div class="left">
+			<div class="content">
+				
+				<div class="filterlist">
+					<div class="fitem">
+						<div class="caption">竞猜分类</div>
+						<ul>
+							<li><a {if !$params['cateid'] && !$params['custom']}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=0&custom=0&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">全部</a></li>
+							{loop $rootCategorys $category}
+							<li><a {if $params['cateid'] == $category['id']}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$category[id]&custom=0&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]}" >{$category[name]}</a></li>
+							{/loop}
+							<li><a {if $params['custom']}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=0&custom=1&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">自定义</a></li>
+						</ul>
+					</div>
+					<div class="fitem">
+						<div class="caption">下注类型</div>
+						<ul>
+							<li><a {if !$params['wealth']}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=0&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">全部</a></li>
+							<li><a {if $params['wealth'] == '1'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=1&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">金币</a></li>
+							<li><a {if $params['wealth'] == '2'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=2&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">积分</a></li>
+							<li><a {if $params['wealth'] == '3'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=3&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">吃喝玩乐</a></li>
+						</ul>
+					</div>
+					<div class="fitem">
+						<div class="caption">赔率类型</div>
+						<ul>
+							<li><a {if !$params['odds']}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=0&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">全部</a></li>
+							<li><a {if $params['odds'] == '1'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=1&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">固定赔率</a></li>
+							<li><a {if $params['odds'] == '2'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=2&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">浮动赔率</a></li>
+							<li><a {if $params['odds'] == '3'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=3&time=$params[time]&keyword=$params[keyword]&range=$params[range]}">组合赔率</a></li>
+						</ul>
+					</div>
+					<div class="fitem">
+						<div class="caption">发布时间</div>
+						<ul>
+							<li><a {if !$params['time']}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=0&keyword=$params[keyword]&range=$params[range]}">全部</a></li>
+							<li><a {if $params['time'] == '1'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=1&keyword=$params[keyword]&range=$params[range]}">1天之内</a></li>
+							<li><a {if $params['time'] == '3'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=3&keyword=$params[keyword]&range=$params[range]}">3天之内</a></li>
+							<li><a {if $params['time'] == '7'}class="sel"{/if} href="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=7&keyword=$params[keyword]&range=$params[range]}">7天之内</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="guess_list">
+					<ul class="nav nav-tabs" id="list_tab">
+			        	<li {if !$params['history']}class="active"{/if}><a href="/guess/list/">全部竞猜</a></li>
+						<li {if $params['history']}class="active"{/if}><a href="{url /guess/list/?history=1}">历史竞猜</a></li>		
+		        	</ul>
+					
+					<label class="checkbox">
+						<input type="checkbox" onclick="justFriend(this);" {if $params[range] == 1}checked{/if}> 仅查看好友竞猜
+					</label>
+					<div class="tip">
+						排序方式：
+						<select>
+							<option {if !$params['otime']}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=0&ocount=$params[ocount]&owealth=$params[owealth]}" onclick="window.location=this.value">按时间</option>
+							<option {if $params['otime'] == 'asc'}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=asc&ocount=$params[ocount]&owealth=$params[owealth]}" onclick="window.location=this.value">升序</option>
+							<option {if $params['otime'] == 'desc'}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=desc&ocount=$params[ocount]&owealth=$params[owealth]}" onclick="window.location=this.value">降序</option>
+						</select>
+						<select>
+							<option {if !$params['ocount']}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=$params[otime]&ocount=0&owealth=$params[owealth]}" onclick="window.location=this.value">按参与人数</option>
+							<option {if $params['ocount'] == 'asc'}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=$params[otime]&ocount=asc&owealth=$params[owealth]}" onclick="window.location=this.value">升序</option>
+							<option {if $params['ocount'] == 'desc'}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=$params[otime]&ocount=desc&owealth=$params[owealth]}" onclick="window.location=this.value">降序</option>
+						</select>
+						<select>
+							<option {if !$params['owealth']}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=$params[otime]&ocount=$params[ocount]&owealth=0}" onclick="window.location=this.value">按投注</option>
+							<option {if $params['owealth'] == 'asc'}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=$params[otime]&ocount=$params[ocount]&owealth=asc}" onclick="window.location=this.value">升序</option>
+							<option {if $params['owealth'] == 'desc'}selected{/if} value="{url /guess/list/?history=$params[history]&cateid=$params[cateid]&custom=$params[custom]&wealth=$params[wealth]&odds=$params[odds]&time=$params[time]&keyword=$params[keyword]&range=$params[range]&otime=$params[otime]&ocount=$params[ocount]&owealth=desc}" onclick="window.location=this.value">降序</option>
+						</select>						
+					</div>
+					
+					<div class="tab-content list_content">
+						<div class="tab-pane active">
+							{gtpl guess_box}
+							{$pages}
+				        </div>
+					</div>
+				</div>
+												
+			</div>			
+		</div>
+		
+		<div class="right">
+			{gtpl notice_box}
+			{gtpl invite_box}
+			<!--
+			<div class="ulist">
+				<div class="title">您可能感兴趣的用户</div>
+				{gtpl users_list_box}	
+			</div>
+			-->
+			
+			<div class="ad">
+				{gtpl ad_box}				
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+	<script type="text/javascript">
+	<!--
+	function justFriend(checkbox){
+	    var url = '/guess/list/?history={$params[history]}';
+	    if(checkbox.checked){
+			url += '&range=1';
+	    }else{
+			url += '&range=0';
+	    }
+		window.location= url;
+	}
+	//-->
+	</script>
+{gtpl footer}
